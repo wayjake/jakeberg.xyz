@@ -1,87 +1,82 @@
-# Welcome to React Router!
+# Jake Berg - Portfolio Website
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Personal portfolio website built with React Router v7, showcasing my work as a Full Stack Developer.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 🚀 Live Site
 
-## Features
+[https://jakeberg.xyz](https://jakeberg.xyz)
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## 🛠 Tech Stack
 
-## Getting Started
+- **Framework**: React Router v7
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+- **Runtime**: Node.js
+- **Contact Form**: Telegram Bot API integration
+
+## ✨ Features
+
+- **Responsive Design**: Optimized for all devices
+- **Contact Form**: Direct messaging via Telegram integration
+- **Keyboard Shortcuts**: Quick form submission with Cmd+Return (Mac) or Ctrl+Enter (Windows)
+- **SEO Optimized**: Comprehensive meta tags for search engines and social media
+- **Downloadable Resume**: PDF resume available for download
+
+## 🏃‍♂️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
 
 ### Installation
 
-Install the dependencies:
-
 ```bash
+# Clone the repository
+git clone https://github.com/wayjake/jakeberg.xyz.git
+
+# Navigate to project directory
+cd jakeberg.xyz
+
+# Install dependencies
 npm install
-```
 
-### Development
+# Create .env file with your Telegram bot token
+echo "TELEGRAM_TOKEN=your_bot_token_here" > .env
 
-Start the development server with HMR:
-
-```bash
+# Start development server
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+### Environment Variables
 
-## Building for Production
+Create a `.env` file in the root directory:
 
-Create a production build:
+```env
+TELEGRAM_TOKEN=your_telegram_bot_token
+```
+
+To get a Telegram bot token:
+1. Message [@BotFather](https://t.me/botfather) on Telegram
+2. Create a new bot with `/newbot`
+3. Copy the token provided
+
+## 📦 Deployment
 
 ```bash
+# Build for production
 npm run build
+
+# Start production server
+npm start
 ```
 
-## Deployment
+## 🤝 Connect
 
-### Docker Deployment
+- **GitHub**: [github.com/wayjake](https://github.com/wayjake)
+- **LinkedIn**: [linkedin.com/in/jakedaneberg](https://www.linkedin.com/in/jakedaneberg)
+- **Email**: Contact form on the website
 
-To build and run using Docker:
+## 📄 License
 
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+MIT License - feel free to use this as inspiration for your own portfolio!
