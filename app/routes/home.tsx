@@ -29,6 +29,12 @@ export async function action({ request }: Route.ActionArgs) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
+  const verification = formData.get("verification") as string;
+
+  // Check anti-bot verification
+  if (verification?.trim() !== "7") {
+    return { error: "Incorrect verification answer. Please solve the math problem correctly." };
+  }
 
   const telegramToken = process.env.TELEGRAM_TOKEN;
   const chatId = "-1002256047927";
@@ -311,7 +317,7 @@ export default function Home() {
             </p>
           </div>
 
-          <Form method="post" id="contact-form" className="max-w-2xl mx-auto">
+          <Form method="post" id="contact-form" className="max-w-2xl mx-auto" key={showSuccess ? 'success' : 'form'}>
             {actionData?.error && !showSuccess && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-700 font-medium">Failed to send message</p>
@@ -364,6 +370,19 @@ export default function Home() {
                   required
                   className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none placeholder-gray-400"
                   placeholder="Tell me about your project..."
+                />
+              </div>
+              <div>
+                <label htmlFor="verification" className="block text-sm font-medium text-gray-700 mb-2">
+                  What is 3 + 4? (Anti-bot verification)
+                </label>
+                <input
+                  type="text"
+                  name="verification"
+                  id="verification"
+                  required
+                  className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all placeholder-gray-400"
+                  placeholder="Type your answer..."
                 />
               </div>
               <button
