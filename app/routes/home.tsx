@@ -5,17 +5,17 @@ import { Form, useNavigation, useActionData } from "react-router";
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Jake Berg - Full Stack Developer | React, Node.js, AI Integration" },
-    { name: "description", content: "Full Stack Developer specializing in React, Node.js, and AI-powered solutions. From rapid prototyping to scalable architectures, I help businesses ship features at unprecedented speed. Canadian-American developer with expertise in modern web technologies." },
-    { name: "keywords", content: "Jake Berg, Full Stack Developer, React Developer, Node.js Expert, AI Integration, Web Development, JavaScript, TypeScript, Remix, React Router v7, Software Engineer, Canadian Developer, American Developer" },
-    { property: "og:title", content: "Jake Berg - Full Stack Developer | React, Node.js, AI Integration" },
-    { property: "og:description", content: "Full Stack Developer helping businesses ship features at unprecedented speed with modern web technologies and AI-powered development." },
+    { title: "Jake Berg - Fractional CTO | Technical Leadership & Strategic Guidance" },
+    { name: "description", content: "Fractional CTO services providing technical leadership, code reviews, team management, and strategic guidance. I help close the gap between ambitious goals and reality. Expert in React, Node.js, and modern architectures." },
+    { name: "keywords", content: "Jake Berg, Fractional CTO, Technical Leadership, CTO as a Service, Tech Strategy, Code Review, Team Management, React, Node.js, Infrastructure, Software Architecture" },
+    { property: "og:title", content: "Jake Berg - Fractional CTO | Technical Leadership & Strategic Guidance" },
+    { property: "og:description", content: "Fractional CTO services helping companies bridge the gap between vision and execution with hands-on technical leadership." },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://jakeberg.xyz" },
     { property: "og:image", content: "https://jakeberg.xyz/me.jpg" },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: "Jake Berg - Full Stack Developer" },
-    { name: "twitter:description", content: "Full Stack Developer specializing in React, Node.js, and AI-powered solutions. Let's build something amazing together." },
+    { name: "twitter:title", content: "Jake Berg - Fractional CTO" },
+    { name: "twitter:description", content: "Fractional CTO services helping companies bridge the gap between ambitious goals and reality with hands-on technical leadership." },
     { name: "twitter:image", content: "https://jakeberg.xyz/me.jpg" },
     { name: "author", content: "Jake Berg" },
     { name: "robots", content: "index, follow" },
@@ -131,7 +131,7 @@ export default function Home() {
           </a>
           <div className="hidden md:flex items-center gap-6">
             <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
-            <a href="#skills" className="text-gray-600 hover:text-gray-900 transition-colors">Skills</a>
+            <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
           </div>
           <a href="#contact" className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors text-sm font-medium">
@@ -145,7 +145,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6">
             <div className="inline-block px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
-              <span className="text-blue-600 text-sm font-medium">Full Stack Developer</span>
+              <span className="text-blue-600 text-sm font-medium">Fractional CTO</span>
             </div>
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
               Turning Ideas Into
@@ -154,16 +154,16 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              I architect solutions that bridge imagination and implementation,
-              crafting experiences that push the boundaries of what's possible.
+              I help close the gap between ambitious goals and reality,
+              providing technical leadership that scales with your business.
             </p>
             <div className="flex gap-4 justify-center pt-4">
-              <button className="relative px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all transform hover:-translate-y-1">
-                View My Work
-                <span className="absolute -top-2 -right-2 px-2 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
-                  Coming Soon
-                </span>
-              </button>
+              <a
+                href="#services"
+                className="px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all transform hover:-translate-y-1"
+              >
+                View Services
+              </a>
               <a
                 href="/jake-berg-resume.pdf"
                 download="jake-berg-resume.pdf"
@@ -231,76 +231,200 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 💫 Solutions Section - what you actually need */}
-      <section id="skills" className="py-20 px-6">
+      {/* 💫 Fractional CTO Services */}
+      <section id="services" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
-            What Do You Need? <span className="text-blue-600">🎯</span>
+            My services <span className="text-blue-600"> 🎯</span>
           </h2>
           <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-            In this AI age, there's no excuse for not shipping features at a wicked pace.
-            Let's fix what's holding you back.
+            Technical leadership that scales with your needs. Choose the engagement level that fits your business.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                question: "Need a new landing page?",
-                answer: "From concept to launch in days, not weeks",
-                subtext: "Conversion-focused design with modern stack",
-                icon: "🚀"
-              },
-              {
-                question: "Custom CMS needed?",
-                answer: "Your content, your rules, your workflow",
-                subtext: "Headless architecture that scales with you",
-                icon: "📝"
-              },
-              {
-                question: "Site too slow?",
-                answer: "Or maybe your current developer is?",
-                subtext: "Performance audits & instant optimizations",
-                icon: "⚡"
-              },
-              {
-                question: "Missing AI features?",
-                answer: "Your competitors aren't waiting",
-                subtext: "GPT-4, Claude, custom models - integrated fast",
-                icon: "🤖"
-              },
-              {
-                question: "Drowning in tech debt?",
-                answer: "Refactor while shipping new features",
-                subtext: "Modern patterns without the downtime",
-                icon: "🔧"
-              },
-              {
-                question: "Need it yesterday?",
-                answer: "AI-accelerated development is here",
-                subtext: "10x faster with the right tools & expertise",
-                icon: "🏃"
-              },
-            ].map((item) => (
-              <div
-                key={item.question}
-                className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all group relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity" />
-                <div className="relative">
-                  <div className="text-3xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{item.question}</h3>
-                  <p className="text-gray-800 font-medium mb-1">{item.answer}</p>
-                  <p className="text-sm text-gray-500">{item.subtext}</p>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Strategy Call */}
+            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
+              <div className="relative">
+                <div className="text-3xl mb-4">🎯</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Strategy Session</h3>
+                <p className="text-blue-600 font-semibold mb-4">One-Time Consultation</p>
+                <div className="space-y-3 text-gray-700">
+                  <p className="font-medium">Perfect for immediate guidance:</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Architecture review & recommendations</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Technology stack evaluation</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Roadmap planning for future success</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Team structure recommendations</span>
+                    </li>
+                  </ul>
+                  <p className="text-sm text-gray-600 pt-4">
+                    Get clarity on your technical direction with actionable insights you can implement immediately.
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Weekly Sessions */}
+            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
+              <div className="relative">
+                <div className="text-3xl mb-4">📅</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Weekly Checkins</h3>
+                <p className="text-blue-600 font-semibold mb-4">Ongoing Support</p>
+                <div className="space-y-3 text-gray-700">
+                  <p className="font-medium">Continuous technical oversight:</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Weekly progress reviews</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Code review & quality assurance</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Security vulnerability analysis</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Process improvement suggestions</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Strategic technical guidance</span>
+                    </li>
+                  </ul>
+                  <p className="text-sm text-gray-600 pt-4">
+                    Stay on track with regular check-ins and proactive problem-solving.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Part-Time CTO */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
+                Flexible Hours
+              </div>
+              <div className="relative">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Fractional CTO</h3>
+                <p className="text-blue-600 font-semibold mb-4">Hands-On Leadership</p>
+                <div className="space-y-3 text-gray-700">
+                  <p className="font-medium">Full technical leadership:</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Active team management</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Hands-on coding & architecture</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Infrastructure deployment</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Executive alignment meetings</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">✓</span>
+                      <span>Product vision to development bridge</span>
+                    </li>
+                  </ul>
+                  <p className="text-sm text-gray-600 pt-4">
+                    Get a seasoned CTO without the full-time commitment or cost.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mt-12 text-center">
-            <p className="text-2xl font-bold text-gray-900 mb-4">
-              Stop settling for slow. <span className="text-blue-600">Start shipping fast.</span>
-            </p>
-            <p className="text-gray-600">
-              AI-powered development isn't the future—it's what your competitors are using right now.
-            </p>
+        </div>
+      </section>
+
+      {/* 🚀 Startup Focus Section - direct message to founders */}
+      <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-bl-full opacity-30" />
+            <div className="relative">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Hey, I'm Jake Berg, and you're a startup—
+                <span className="block text-blue-600 mt-2">I help close the gap between ambitious goals and reality.</span>
+              </h2>
+              <div className="space-y-4 text-lg text-gray-700">
+                <p>
+                  You need to focus on marketing and sales. I want you to know that your software is being handled
+                  so you can focus on the parts that you do best.
+                </p>
+                <p className="font-semibold text-gray-900">
+                  I focus on the future and what you will need. From scalable code to hiring a team.
+                </p>
+              </div>
+
+              {/* Companies section */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
+                <div className="grid grid-cols-3 gap-8 items-center">
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.dubsado.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/dubsado-logo.webp"
+                        alt="Dubsado"
+                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </div>
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.socialcurator.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/social-curator-logo.png"
+                        alt="Social Curator"
+                        className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </div>
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.robolike.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/robolike-logo.png"
+                        alt="RoboLike"
+                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
