@@ -134,7 +134,7 @@ export default function Home() {
             <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
           </div>
-          <a href="#contact" className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors text-sm font-medium">
+          <a href="#contact" className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
             Let's Talk
           </a>
         </div>
@@ -165,11 +165,10 @@ export default function Home() {
                 View Services
               </a>
               <a
-                href="/jake-berg-resume.pdf"
-                download="jake-berg-resume.pdf"
+                href="/resume"
                 className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all inline-block"
               >
-                Download CV
+                View CV
               </a>
             </div>
           </div>
