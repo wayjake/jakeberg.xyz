@@ -11,13 +11,18 @@
   "dependencies": {
     "@react-router/node": "^7.7.1",
     "@react-router/serve": "^7.7.1",
+    "@tailwindcss/typography": "^0.5.19",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "html2canvas": "^1.4.1",
     "isbot": "^5.1.27",
     "jspdf": "^3.0.3",
+    "marked": "^16.4.1",
+    "mermaid": "^11.12.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.7.1",
+    "shiki": "^3.14.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {

@@ -114,7 +114,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50">
       {/* ✨ Floating Navbar - like a spaceship control panel */}
       <nav
         className={cn(
@@ -132,6 +132,7 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-6">
             <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
             <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
+            <a href="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">Blog</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
           </div>
           <a href="#contact" className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
