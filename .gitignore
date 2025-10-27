@@ -6,3 +6,7 @@
 /build/
 
 .env
+
+# Temporary files
+.playwright-mcp/
+resume-static.html
