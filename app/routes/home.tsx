@@ -229,7 +229,7 @@ export default function Home() {
       </nav>
 
       {/* 🚀 Hero Section - where the magic begins */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-44 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6">
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
