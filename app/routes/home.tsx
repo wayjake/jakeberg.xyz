@@ -284,26 +284,15 @@ export default function Home() {
                   Canadian turned American, builder at heart.
                 </p>
                 <p>
-                  When I'm not crafting digital experiences, you'll find me in my workshop learning woodworking,
-                  or outside spending way too much time perfecting my bermudagrass lawn. I'm currently dreaming
-                  of that new reel mower.
-                </p>
-                <p>
-                  I'm passionate about React and the whole Remix/React Router v7 movement, but I pride myself
-                  on adapting to any stack or language. The best tool is the one that solves the problem. I'm also a big fan of AI and how it can be used to make our lives easier and more efficient.
-                </p>
-                <p>
-                  Life outside code: Married with two energetic boys, one loyal dog, and one cat who thinks
-                  they run the place. They keep me grounded and remind me why building great things matters.
+                  Passionate about React and modern web development, but I adapt to any stack.
+                  The best tool is the one that solves the problem.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 {[
-                  "🇨🇦 → 🇺🇸 Dual Citizen",
-                  "🪵 Woodworking Enthusiast",
-                  "⚛️ React Advocate",
-                  "🏡 Lawn Perfectionist",
-                  "👨‍💻 Nodejs Expert"
+                  "⚛️ React Expert",
+                  "👨‍💻 Node.js",
+                  "🇨🇦 → 🇺🇸 Dual Citizen"
                 ].map((tag) => (
                   <span
                     key={tag}
@@ -363,8 +352,10 @@ export default function Home() {
             </div>
 
             {/* Weekly Sessions */}
-            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
+                Most Popular
+              </div>
               <div className="relative">
                 <div className="text-3xl mb-4">📅</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Weekly Checkins</h3>
@@ -401,10 +392,8 @@ export default function Home() {
             </div>
 
             {/* Part-Time CTO */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
-                Flexible Hours
-              </div>
+            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
               <div className="relative">
                 <div className="text-3xl mb-4">🚀</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Fractional CTO</h3>
@@ -443,81 +432,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🚀 Startup Focus Section - direct message to founders */}
-      <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-bl-full opacity-30" />
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Hey, I'm Jake Berg, and you're a startup—
-                <span className="block text-blue-600 mt-2">I help close the gap between ambitious goals and reality.</span>
-              </h2>
-              <div className="space-y-4 text-lg text-gray-700">
-                <p>
-                  You need to focus on marketing and sales. I want you to know that your software is being handled
-                  so you can focus on the parts that you do best.
-                </p>
-                <p className="font-semibold text-gray-900">
-                  I focus on the future and what you will need. From scalable code to hiring a team.
-                </p>
-              </div>
-
-              {/* Companies section */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
-                <div className="grid grid-cols-3 gap-8 items-center">
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.dubsado.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/dubsado-logo.webp"
-                        alt="Dubsado"
-                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.socialcurator.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/social-curator-logo.png"
-                        alt="Social Curator"
-                        className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.robolike.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/robolike-logo.png"
-                        alt="RoboLike"
-                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 📬 Contact Section - let's connect */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -644,6 +560,79 @@ export default function Home() {
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 🚀 Startup Focus Section - direct message to founders */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-bl-full opacity-30" />
+            <div className="relative">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Hey, I'm Jake Berg, and you're a startup—
+                <span className="block text-blue-600 mt-2">I help close the gap between ambitious goals and reality.</span>
+              </h2>
+              <div className="space-y-4 text-lg text-gray-700">
+                <p>
+                  You need to focus on marketing and sales. I want you to know that your software is being handled
+                  so you can focus on the parts that you do best.
+                </p>
+                <p className="font-semibold text-gray-900">
+                  I focus on the future and what you will need. From scalable code to hiring a team.
+                </p>
+              </div>
+
+              {/* Companies section */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
+                <div className="grid grid-cols-3 gap-8 items-center">
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.dubsado.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/dubsado-logo.webp"
+                        alt="Dubsado"
+                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </div>
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.socialcurator.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/social-curator-logo.png"
+                        alt="Social Curator"
+                        className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </div>
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.robolike.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/robolike-logo.png"
+                        alt="RoboLike"
+                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

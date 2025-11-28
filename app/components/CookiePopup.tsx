@@ -1,23 +1,31 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router";
 
 export function CookiePopup() {
   const [isVisible, setIsVisible] = useState(false);
+  const location = useLocation();
+
+  // Only show on blog routes
+  const isBlogRoute = location.pathname.startsWith("/blog");
 
   useEffect(() => {
+    // Only show on blog routes
+    if (!isBlogRoute) return;
+
     // Check if user has already dismissed the popup
     const dismissed = sessionStorage.getItem("cookiePopupDismissed");
     if (!dismissed) {
       // Show popup after a short delay for better UX
       setTimeout(() => setIsVisible(true), 1000);
     }
-  }, []);
+  }, [isBlogRoute]);
 
   const handleDismiss = () => {
     sessionStorage.setItem("cookiePopupDismissed", "true");
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || !isBlogRoute) return null;
 
   return (
     <>
