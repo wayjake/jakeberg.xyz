@@ -162,6 +162,8 @@ export default function Home() {
   const isSubmitting = navigation.state === "submitting";
   const [showSuccess, setShowSuccess] = useState(false);
   const [isMac, setIsMac] = useState(true);
+  const [activeCard, setActiveCard] = useState(0);
+  const totalCards = 2;
 
   useEffect(() => {
     // Detect if user is on Mac
@@ -200,6 +202,14 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Auto-rotate testimonial cards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % totalCards);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50">
       {/* ✨ Floating Navbar - like a spaceship control panel */}
@@ -213,8 +223,8 @@ export default function Home() {
         )}
       >
         <div className="flex items-center gap-8">
-          <a href="#" className="text-gray-900 font-bold text-lg hover:text-blue-600 transition-colors">
-            JB<span className="text-blue-600">.</span>
+          <a href="#" className="text-gray-900 font-bold text-lg hover:text-rose-500 transition-colors">
+            JB<span className="text-rose-500">.</span>
           </a>
           <div className="hidden md:flex items-center gap-6">
             <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
@@ -222,33 +232,29 @@ export default function Home() {
             <a href="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">Blog</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
           </div>
-          <a href="#contact" className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
+          <a href="#contact" className="ml-4 px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
             Let's Talk
           </a>
         </div>
       </nav>
 
       {/* 🚀 Hero Section - where the magic begins */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-44 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6">
-            <div className="inline-block px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
-              <span className="text-blue-600 text-sm font-medium">Fractional CTO</span>
-            </div>
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
-              Turning Ideas Into
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 leading-tight">
-                Digital Reality
+              Accelerating Your
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 leading-tight">
+                AI-Driven Development
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              I help close the gap between ambitious goals and reality,
-              providing technical leadership that scales with your business.
+              AI can help you build an app, but when you hit walls that cost weeks of frustration—I solve them in a single session.
             </p>
             <div className="flex gap-4 justify-center pt-4">
               <a
                 href="#services"
-                className="px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all transform hover:-translate-y-1"
+                className="px-8 py-4 bg-rose-500 text-white rounded-full font-medium hover:bg-rose-600 hover:shadow-lg transition-all transform hover:-translate-y-1"
               >
                 View Services
               </a>
@@ -279,31 +285,25 @@ export default function Home() {
               />
             </div>
             <div className="space-y-6">
-              <div className="space-y-3 text-gray-700">
-                <p className="text-xl font-medium text-gray-900">
-                  Canadian turned American, builder at heart.
+              <div className="space-y-4 text-gray-700">
+                <p>
+                  With over a decade of experience shipping software, I've built everything from scrappy MVPs that landed funding to enterprise systems serving millions of users. What I enjoy most is taking something complex and making it work.
                 </p>
                 <p>
-                  When I'm not crafting digital experiences, you'll find me in my workshop learning woodworking,
-                  or outside spending way too much time perfecting my bermudagrass lawn. I'm currently dreaming
-                  of that new reel mower.
+                  I'm focused on how AI is changing development. Tools like Claude Code are core to my workflow, letting me tackle problems that used to take days in hours. I help clients leverage these tools as a genuine multiplier for what small teams can accomplish.
                 </p>
                 <p>
-                  I'm passionate about React and the whole Remix/React Router v7 movement, but I pride myself
-                  on adapting to any stack or language. The best tool is the one that solves the problem. I'm also a big fan of AI and how it can be used to make our lives easier and more efficient.
-                </p>
-                <p>
-                  Life outside code: Married with two energetic boys, one loyal dog, and one cat who thinks
-                  they run the place. They keep me grounded and remind me why building great things matters.
+                  What sets me apart is understanding that your software exists to serve your business. Shipping the right feature matters more than perfect architecture. I help you make trade-offs intelligently—moving fast without accumulating technical debt.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 {[
-                  "🇨🇦 → 🇺🇸 Dual Citizen",
-                  "🪵 Woodworking Enthusiast",
-                  "⚛️ React Advocate",
-                  "🏡 Lawn Perfectionist",
-                  "👨‍💻 Nodejs Expert"
+                  "⚛️ React",
+                  "👨‍💻 Node.js",
+                  "🤖 Claude Code",
+                  "▲ Vercel",
+                  "🔌 API Integration",
+                  "📦 Product Development"
                 ].map((tag) => (
                   <span
                     key={tag}
@@ -333,7 +333,8 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
               <div className="relative">
                 <div className="text-3xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Strategy Session</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">Strategy Session</h3>
+                <p className="text-3xl font-bold text-gray-900 mb-2">$500</p>
                 <p className="text-blue-600 font-semibold mb-4">One-Time Consultation</p>
                 <div className="space-y-3 text-gray-700">
                   <p className="font-medium">Perfect for immediate guidance:</p>
@@ -362,52 +363,50 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Weekly Sessions */}
-            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
+            {/* Development Session */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
+                Most Popular
+              </div>
               <div className="relative">
-                <div className="text-3xl mb-4">📅</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Weekly Checkins</h3>
-                <p className="text-blue-600 font-semibold mb-4">Ongoing Support</p>
+                <div className="text-3xl mb-4">💻</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">Development Session</h3>
+                <p className="text-3xl font-bold text-gray-900 mb-2">$350<span className="text-lg font-normal text-gray-500">/session</span></p>
+                <p className="text-blue-600 font-semibold mb-4">Weekly Pair Programming</p>
                 <div className="space-y-3 text-gray-700">
-                  <p className="font-medium">Continuous technical oversight:</p>
+                  <p className="font-medium">Ship faster with hands-on guidance:</p>
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Weekly progress reviews</span>
+                      <span>Pair code through your project together</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Code review & quality assurance</span>
+                      <span>End each session with working code</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Security vulnerability analysis</span>
+                      <span>Clear next steps to work on between sessions</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Process improvement suggestions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Strategic technical guidance</span>
+                      <span>Solve in 1 hour what takes weeks alone</span>
                     </li>
                   </ul>
                   <p className="text-sm text-gray-600 pt-4">
-                    Stay on track with regular check-ins and proactive problem-solving.
+                    Walk away with a finished product, not just advice.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Part-Time CTO */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
-                Flexible Hours
-              </div>
+            {/* Fractional CTO */}
+            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
               <div className="relative">
                 <div className="text-3xl mb-4">🚀</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Fractional CTO</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">Fractional CTO</h3>
+                <p className="text-3xl font-bold text-gray-900 mb-2"><span className="text-lg font-normal text-gray-500">Starting at </span>$5,000<span className="text-lg font-normal text-gray-500">/mo</span></p>
                 <p className="text-blue-600 font-semibold mb-4">Hands-On Leadership</p>
                 <div className="space-y-3 text-gray-700">
                   <p className="font-medium">Full technical leadership:</p>
@@ -443,81 +442,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🚀 Startup Focus Section - direct message to founders */}
-      <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-bl-full opacity-30" />
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Hey, I'm Jake Berg, and you're a startup—
-                <span className="block text-blue-600 mt-2">I help close the gap between ambitious goals and reality.</span>
-              </h2>
-              <div className="space-y-4 text-lg text-gray-700">
-                <p>
-                  You need to focus on marketing and sales. I want you to know that your software is being handled
-                  so you can focus on the parts that you do best.
-                </p>
-                <p className="font-semibold text-gray-900">
-                  I focus on the future and what you will need. From scalable code to hiring a team.
-                </p>
-              </div>
-
-              {/* Companies section */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
-                <div className="grid grid-cols-3 gap-8 items-center">
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.dubsado.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/dubsado-logo.webp"
-                        alt="Dubsado"
-                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.socialcurator.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/social-curator-logo.png"
-                        alt="Social Curator"
-                        className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.robolike.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/robolike-logo.png"
-                        alt="RoboLike"
-                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 📬 Contact Section - let's connect */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -611,7 +537,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
+                className="w-full px-8 py-4 bg-rose-500 text-white rounded-full font-medium hover:bg-rose-600 hover:shadow-lg transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
               >
                 {isSubmitting ? "Sending..." : (
                   <>
@@ -644,6 +570,125 @@ export default function Home() {
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 🚀 Rotating Cards Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative overflow-hidden">
+            {/* Cards Container */}
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${activeCard * 100}%)` }}
+            >
+              {/* Card 1: Hey, I'm Jake Berg */}
+              <div className="w-full flex-shrink-0 px-1">
+                <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
+                  <div className="relative">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                      Hey, I'm Jake Berg, and you're a startup—
+                      <span className="block text-rose-500 mt-2">I help close the gap between ambitious goals and reality.</span>
+                    </h2>
+                    <div className="space-y-4 text-lg text-gray-700">
+                      <p>
+                        You need to focus on marketing and sales. I want you to know that your software is being handled
+                        so you can focus on the parts that you do best.
+                      </p>
+                      <p className="font-semibold text-gray-900">
+                        I focus on the future and what you will need. From scalable code to hiring a team.
+                      </p>
+                    </div>
+
+                    {/* Companies section */}
+                    <div className="mt-12 pt-8 border-t border-gray-200">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
+                      <div className="grid grid-cols-3 gap-8 items-center">
+                        <div className="flex justify-center">
+                          <a
+                            href="https://www.dubsado.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-transform hover:scale-105"
+                          >
+                            <img
+                              src="/dubsado-logo.webp"
+                              alt="Dubsado"
+                              className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                            />
+                          </a>
+                        </div>
+                        <div className="flex justify-center">
+                          <a
+                            href="https://www.socialcurator.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-transform hover:scale-105"
+                          >
+                            <img
+                              src="/social-curator-logo.png"
+                              alt="Social Curator"
+                              className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                            />
+                          </a>
+                        </div>
+                        <div className="flex justify-center">
+                          <a
+                            href="https://www.robolike.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-transform hover:scale-105"
+                          >
+                            <img
+                              src="/robolike-logo.png"
+                              alt="RoboLike"
+                              className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Testimonial */}
+              <div className="w-full flex-shrink-0 px-1">
+                <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
+                  <div className="relative flex flex-col justify-center h-full">
+                    <div className="text-5xl text-rose-300 mb-4">"</div>
+                    <blockquote className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
+                      Jake helped us answer some big architectural decisions before we started coding. We were able to proceed through our first 3 months of development with a lot more confidence that we were on the right path. We appreciate Jake's guidance and continued support with one-off calls whenever we get stuck.
+                    </blockquote>
+                    <div className="mt-auto">
+                      <p className="font-bold text-gray-900 text-lg">Michael T.</p>
+                      <p className="text-gray-600">Founder, ShieldTrack Solutions</p>
+                      <p className="text-sm text-rose-500 mt-1">Strategy Session Client</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {[...Array(totalCards)].map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveCard(index)}
+                  className={cn(
+                    "w-3 h-3 rounded-full transition-all",
+                    activeCard === index
+                      ? "bg-rose-500 w-8"
+                      : "bg-gray-300 hover:bg-gray-400"
+                  )}
+                  aria-label={`Go to card ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
