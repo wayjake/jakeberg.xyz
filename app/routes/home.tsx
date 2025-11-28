@@ -213,8 +213,8 @@ export default function Home() {
         )}
       >
         <div className="flex items-center gap-8">
-          <a href="#" className="text-gray-900 font-bold text-lg hover:text-blue-600 transition-colors">
-            JB<span className="text-blue-600">.</span>
+          <a href="#" className="text-gray-900 font-bold text-lg hover:text-rose-500 transition-colors">
+            JB<span className="text-rose-500">.</span>
           </a>
           <div className="hidden md:flex items-center gap-6">
             <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
@@ -222,7 +222,7 @@ export default function Home() {
             <a href="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">Blog</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
           </div>
-          <a href="#contact" className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
+          <a href="#contact" className="ml-4 px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
             Let's Talk
           </a>
         </div>
@@ -232,13 +232,10 @@ export default function Home() {
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6">
-            <div className="inline-block px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
-              <span className="text-blue-600 text-sm font-medium">Fractional CTO</span>
-            </div>
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
-              Turning Ideas Into
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 leading-tight">
-                Digital Reality
+              Accelerating Your
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 leading-tight">
+                AI-Driven Development
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -247,7 +244,7 @@ export default function Home() {
             <div className="flex gap-4 justify-center pt-4">
               <a
                 href="#services"
-                className="px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all transform hover:-translate-y-1"
+                className="px-8 py-4 bg-rose-500 text-white rounded-full font-medium hover:bg-rose-600 hover:shadow-lg transition-all transform hover:-translate-y-1"
               >
                 View Services
               </a>
@@ -530,7 +527,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
+                className="w-full px-8 py-4 bg-rose-500 text-white rounded-full font-medium hover:bg-rose-600 hover:shadow-lg transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
               >
                 {isSubmitting ? "Sending..." : (
                   <>
