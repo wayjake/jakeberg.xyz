@@ -162,6 +162,8 @@ export default function Home() {
   const isSubmitting = navigation.state === "submitting";
   const [showSuccess, setShowSuccess] = useState(false);
   const [isMac, setIsMac] = useState(true);
+  const [activeCard, setActiveCard] = useState(0);
+  const totalCards = 2;
 
   useEffect(() => {
     // Detect if user is on Mac
@@ -198,6 +200,14 @@ export default function Home() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Auto-rotate testimonial cards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % totalCards);
+    }, 8000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -564,74 +574,120 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🚀 Startup Focus Section - direct message to founders */}
+      {/* 🚀 Rotating Cards Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-bl-full opacity-30" />
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Hey, I'm Jake Berg, and you're a startup—
-                <span className="block text-blue-600 mt-2">I help close the gap between ambitious goals and reality.</span>
-              </h2>
-              <div className="space-y-4 text-lg text-gray-700">
-                <p>
-                  You need to focus on marketing and sales. I want you to know that your software is being handled
-                  so you can focus on the parts that you do best.
-                </p>
-                <p className="font-semibold text-gray-900">
-                  I focus on the future and what you will need. From scalable code to hiring a team.
-                </p>
-              </div>
+          <div className="relative overflow-hidden">
+            {/* Cards Container */}
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${activeCard * 100}%)` }}
+            >
+              {/* Card 1: Hey, I'm Jake Berg */}
+              <div className="w-full flex-shrink-0 px-1">
+                <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
+                  <div className="relative">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                      Hey, I'm Jake Berg, and you're a startup—
+                      <span className="block text-rose-500 mt-2">I help close the gap between ambitious goals and reality.</span>
+                    </h2>
+                    <div className="space-y-4 text-lg text-gray-700">
+                      <p>
+                        You need to focus on marketing and sales. I want you to know that your software is being handled
+                        so you can focus on the parts that you do best.
+                      </p>
+                      <p className="font-semibold text-gray-900">
+                        I focus on the future and what you will need. From scalable code to hiring a team.
+                      </p>
+                    </div>
 
-              {/* Companies section */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
-                <div className="grid grid-cols-3 gap-8 items-center">
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.dubsado.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/dubsado-logo.webp"
-                        alt="Dubsado"
-                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.socialcurator.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/social-curator-logo.png"
-                        alt="Social Curator"
-                        className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-center">
-                    <a
-                      href="https://www.robolike.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-transform hover:scale-105"
-                    >
-                      <img
-                        src="/robolike-logo.png"
-                        alt="RoboLike"
-                        className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                      />
-                    </a>
+                    {/* Companies section */}
+                    <div className="mt-12 pt-8 border-t border-gray-200">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
+                      <div className="grid grid-cols-3 gap-8 items-center">
+                        <div className="flex justify-center">
+                          <a
+                            href="https://www.dubsado.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-transform hover:scale-105"
+                          >
+                            <img
+                              src="/dubsado-logo.webp"
+                              alt="Dubsado"
+                              className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                            />
+                          </a>
+                        </div>
+                        <div className="flex justify-center">
+                          <a
+                            href="https://www.socialcurator.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-transform hover:scale-105"
+                          >
+                            <img
+                              src="/social-curator-logo.png"
+                              alt="Social Curator"
+                              className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                            />
+                          </a>
+                        </div>
+                        <div className="flex justify-center">
+                          <a
+                            href="https://www.robolike.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-transform hover:scale-105"
+                          >
+                            <img
+                              src="/robolike-logo.png"
+                              alt="RoboLike"
+                              className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Card 2: Testimonial */}
+              <div className="w-full flex-shrink-0 px-1">
+                <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
+                  <div className="relative flex flex-col justify-center h-full">
+                    <div className="text-5xl text-rose-300 mb-4">"</div>
+                    <blockquote className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
+                      Jake helped us answer some big architectural decisions before we started coding. We were able to proceed through our first 3 months of development with a lot more confidence that we were on the right path. We appreciate Jake's guidance and continued support with one-off calls whenever we get stuck.
+                    </blockquote>
+                    <div className="mt-auto">
+                      <p className="font-bold text-gray-900 text-lg">Michael T.</p>
+                      <p className="text-gray-600">Founder, ShieldTrack Solutions</p>
+                      <p className="text-sm text-rose-500 mt-1">Strategy Session Client</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {[...Array(totalCards)].map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveCard(index)}
+                  className={cn(
+                    "w-3 h-3 rounded-full transition-all",
+                    activeCard === index
+                      ? "bg-rose-500 w-8"
+                      : "bg-gray-300 hover:bg-gray-400"
+                  )}
+                  aria-label={`Go to card ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
