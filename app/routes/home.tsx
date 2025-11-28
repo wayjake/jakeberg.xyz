@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "../utils";
 import { Form, useNavigation, useActionData, useLoaderData } from "react-router";
 import crypto from "crypto";
@@ -165,7 +165,47 @@ export default function Home() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isMac, setIsMac] = useState(true);
   const [activeCard, setActiveCard] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const totalCards = 2;
+  const autoRotateInterval = useRef<NodeJS.Timeout | null>(null);
+
+  // Minimum swipe distance to trigger card change
+  const minSwipeDistance = 50;
+
+  const startAutoRotate = useCallback(() => {
+    if (autoRotateInterval.current) {
+      clearInterval(autoRotateInterval.current);
+    }
+    autoRotateInterval.current = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % totalCards);
+    }, 8000);
+  }, [totalCards]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && activeCard < totalCards - 1) {
+      setActiveCard(activeCard + 1);
+      startAutoRotate(); // Reset timer on swipe
+    }
+    if (isRightSwipe && activeCard > 0) {
+      setActiveCard(activeCard - 1);
+      startAutoRotate(); // Reset timer on swipe
+    }
+  };
 
   useEffect(() => {
     // Detect if user is on Mac
@@ -215,11 +255,13 @@ export default function Home() {
 
   // Auto-rotate testimonial cards
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveCard((prev) => (prev + 1) % totalCards);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
+    startAutoRotate();
+    return () => {
+      if (autoRotateInterval.current) {
+        clearInterval(autoRotateInterval.current);
+      }
+    };
+  }, [startAutoRotate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50 overflow-x-hidden">
@@ -589,7 +631,12 @@ export default function Home() {
       {/* 🚀 Rotating Cards Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden px-4 -mx-4">
+          <div
+            className="relative overflow-hidden px-4 -mx-4 touch-pan-y"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             {/* Cards Container */}
             <div
               className="flex transition-transform duration-500 ease-in-out"
@@ -690,7 +737,7 @@ export default function Home() {
               {[...Array(totalCards)].map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setActiveCard(index)}
+                  onClick={() => { setActiveCard(index); startAutoRotate(); }}
                   className={cn(
                     "w-3 h-3 rounded-full transition-all",
                     activeCard === index
