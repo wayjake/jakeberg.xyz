@@ -242,8 +242,7 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              I help close the gap between ambitious goals and reality,
-              providing technical leadership that scales with your business.
+              AI can help you build an app, but when you hit walls that cost weeks of frustration—I solve them in a single session.
             </p>
             <div className="flex gap-4 justify-center pt-4">
               <a
@@ -322,7 +321,8 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
               <div className="relative">
                 <div className="text-3xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Strategy Session</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">Strategy Session</h3>
+                <p className="text-3xl font-bold text-gray-900 mb-2">$500</p>
                 <p className="text-blue-600 font-semibold mb-4">One-Time Consultation</p>
                 <div className="space-y-3 text-gray-700">
                   <p className="font-medium">Perfect for immediate guidance:</p>
@@ -351,52 +351,50 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Weekly Sessions */}
+            {/* Development Session */}
             <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
                 Most Popular
               </div>
               <div className="relative">
-                <div className="text-3xl mb-4">📅</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Weekly Checkins</h3>
-                <p className="text-blue-600 font-semibold mb-4">Ongoing Support</p>
+                <div className="text-3xl mb-4">💻</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">Development Session</h3>
+                <p className="text-3xl font-bold text-gray-900 mb-2">$350<span className="text-lg font-normal text-gray-500">/session</span></p>
+                <p className="text-blue-600 font-semibold mb-4">Weekly Pair Programming</p>
                 <div className="space-y-3 text-gray-700">
-                  <p className="font-medium">Continuous technical oversight:</p>
+                  <p className="font-medium">Ship faster with hands-on guidance:</p>
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Weekly progress reviews</span>
+                      <span>Pair code through your project together</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Code review & quality assurance</span>
+                      <span>End each session with working code</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Security vulnerability analysis</span>
+                      <span>Clear next steps to work on between sessions</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">✓</span>
-                      <span>Process improvement suggestions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Strategic technical guidance</span>
+                      <span>Solve in 1 hour what takes weeks alone</span>
                     </li>
                   </ul>
                   <p className="text-sm text-gray-600 pt-4">
-                    Stay on track with regular check-ins and proactive problem-solving.
+                    Walk away with a finished product, not just advice.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Part-Time CTO */}
+            {/* Fractional CTO */}
             <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
               <div className="relative">
                 <div className="text-3xl mb-4">🚀</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Fractional CTO</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">Fractional CTO</h3>
+                <p className="text-3xl font-bold text-gray-900 mb-2"><span className="text-lg font-normal text-gray-500">Starting at </span>$5,000<span className="text-lg font-normal text-gray-500">/mo</span></p>
                 <p className="text-blue-600 font-semibold mb-4">Hands-On Leadership</p>
                 <div className="space-y-3 text-gray-700">
                   <p className="font-medium">Full technical leadership:</p>
