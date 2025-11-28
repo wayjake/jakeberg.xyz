@@ -1,7 +1,79 @@
 import type { Route } from "./+types/home";
 import { useState, useEffect } from "react";
 import { cn } from "../utils";
-import { Form, useNavigation, useActionData } from "react-router";
+import { Form, useNavigation, useActionData, useLoaderData } from "react-router";
+import crypto from "crypto";
+
+// Simple signing for captcha tokens (prevents tampering)
+const CAPTCHA_SECRET = process.env.CAPTCHA_SECRET || "fallback-secret-change-me";
+
+function generateCaptcha() {
+  const operations = [
+    { op: "+", fn: (a: number, b: number) => a + b },
+    { op: "-", fn: (a: number, b: number) => a - b },
+    { op: "×", fn: (a: number, b: number) => a * b },
+  ];
+  const { op, fn } = operations[Math.floor(Math.random() * operations.length)];
+
+  // Generate numbers that make sense for the operation
+  let a: number, b: number;
+  if (op === "×") {
+    a = Math.floor(Math.random() * 10) + 1;
+    b = Math.floor(Math.random() * 10) + 1;
+  } else if (op === "-") {
+    a = Math.floor(Math.random() * 20) + 10;
+    b = Math.floor(Math.random() * 10) + 1;
+  } else {
+    a = Math.floor(Math.random() * 20) + 1;
+    b = Math.floor(Math.random() * 20) + 1;
+  }
+
+  const answer = fn(a, b);
+  const question = `What is ${a} ${op} ${b}?`;
+  const timestamp = Date.now();
+
+  // Create signed token: answer|timestamp|signature
+  const data = `${answer}|${timestamp}`;
+  const signature = crypto.createHmac("sha256", CAPTCHA_SECRET).update(data).digest("hex").slice(0, 16);
+  const token = Buffer.from(`${data}|${signature}`).toString("base64");
+
+  return { question, token };
+}
+
+function verifyCaptcha(token: string, userAnswer: string): { valid: boolean; error?: string } {
+  try {
+    const decoded = Buffer.from(token, "base64").toString("utf-8");
+    const [answer, timestampStr, signature] = decoded.split("|");
+
+    // Verify signature
+    const data = `${answer}|${timestampStr}`;
+    const expectedSig = crypto.createHmac("sha256", CAPTCHA_SECRET).update(data).digest("hex").slice(0, 16);
+    if (signature !== expectedSig) {
+      return { valid: false, error: "Invalid verification token. Please refresh and try again." };
+    }
+
+    // Check if submission is too fast (< 3 seconds = likely bot)
+    const timestamp = parseInt(timestampStr, 10);
+    const elapsed = Date.now() - timestamp;
+    if (elapsed < 3000) {
+      return { valid: false, error: "Please take a moment to fill out the form." };
+    }
+
+    // Check if token is too old (> 30 minutes)
+    if (elapsed > 30 * 60 * 1000) {
+      return { valid: false, error: "Form expired. Please refresh the page and try again." };
+    }
+
+    // Check answer
+    if (userAnswer.trim() !== answer) {
+      return { valid: false, error: "Incorrect answer. Please solve the math problem correctly." };
+    }
+
+    return { valid: true };
+  } catch {
+    return { valid: false, error: "Invalid verification. Please refresh and try again." };
+  }
+}
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -24,16 +96,30 @@ export function meta({ }: Route.MetaArgs) {
   ];
 }
 
+export async function loader() {
+  const { question, token } = generateCaptcha();
+  return { captchaQuestion: question, captchaToken: token };
+}
+
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
   const verification = formData.get("verification") as string;
+  const captchaToken = formData.get("captchaToken") as string;
+  const honeypot = formData.get("website") as string;
 
-  // Check anti-bot verification
-  if (verification?.trim() !== "7") {
-    return { error: "Incorrect verification answer. Please solve the math problem correctly." };
+  // Honeypot check - bots often fill hidden fields
+  if (honeypot) {
+    // Silently reject but pretend success to confuse bots
+    return { success: true };
+  }
+
+  // Verify captcha (includes time-based check)
+  const captchaResult = verifyCaptcha(captchaToken, verification);
+  if (!captchaResult.valid) {
+    return { error: captchaResult.error };
   }
 
   const telegramToken = process.env.TELEGRAM_TOKEN;
@@ -72,6 +158,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const navigation = useNavigation();
   const actionData = useActionData<typeof action>();
+  const loaderData = useLoaderData<typeof loader>();
   const isSubmitting = navigation.state === "submitting";
   const [showSuccess, setShowSuccess] = useState(false);
   const [isMac, setIsMac] = useState(true);
@@ -455,6 +542,18 @@ export default function Home() {
               </div>
             )}
             <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+              {/* Honeypot field - hidden from humans, bots will fill it */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute -left-[9999px] opacity-0 h-0 w-0"
+              />
+              {/* Captcha token - signed server-side */}
+              <input type="hidden" name="captchaToken" value={loaderData.captchaToken} />
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -498,7 +597,7 @@ export default function Home() {
               </div>
               <div>
                 <label htmlFor="verification" className="block text-sm font-medium text-gray-700 mb-2">
-                  What is 3 + 4? (Anti-bot verification)
+                  {loaderData.captchaQuestion} <span className="text-gray-500">(Anti-bot verification)</span>
                 </label>
                 <input
                   type="text"
