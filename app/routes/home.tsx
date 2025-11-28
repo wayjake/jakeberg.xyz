@@ -278,20 +278,30 @@ export default function Home() {
               />
             </div>
             <div className="space-y-6">
-              <div className="space-y-3 text-gray-700">
+              <div className="space-y-4 text-gray-700">
                 <p className="text-xl font-medium text-gray-900">
-                  Canadian turned American, builder at heart.
+                  Builder at heart, problem solver by trade.
                 </p>
                 <p>
-                  Passionate about React and modern web development, but I adapt to any stack.
-                  The best tool is the one that solves the problem.
+                  With over a decade of experience shipping software, I've learned that the best code is the code that solves real business problems. I've built everything from scrappy MVPs that landed funding to enterprise systems serving millions of users. What I enjoy most is taking something complex and making it work.
+                </p>
+                <p>
+                  My background spans the full stack—React and Node.js are my home base, but I've worked across Python, Go, and whatever the job demands. I'm not married to any particular technology. The best tool is the one that ships your product and keeps your team productive.
+                </p>
+                <p>
+                  These days, I'm especially focused on how AI is changing the development landscape. Tools like Claude Code have become a core part of my workflow, letting me move faster and tackle problems that used to take days in hours. I help my clients leverage these same tools effectively—not as a gimmick, but as a genuine multiplier for what a small team can accomplish.
+                </p>
+                <p>
+                  What sets me apart isn't just technical skill—it's understanding that your software exists to serve your business. I've sat in enough board meetings and sprint reviews to know that shipping the right feature matters more than shipping the perfect architecture. I help you make those trade-offs intelligently, so you can move fast without accumulating the kind of technical debt that slows you down later.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 {[
-                  "⚛️ React Expert",
+                  "⚛️ React",
                   "👨‍💻 Node.js",
-                  "🇨🇦 → 🇺🇸 Dual Citizen"
+                  "🤖 Claude Code",
+                  "☁️ AWS/GCP",
+                  "🏗️ System Design"
                 ].map((tag) => (
                   <span
                     key={tag}
