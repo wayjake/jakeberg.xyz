@@ -156,6 +156,8 @@ export async function action({ request }: Route.ActionArgs) {
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navigation = useNavigation();
   const actionData = useActionData<typeof action>();
   const loaderData = useLoaderData<typeof loader>();
@@ -196,11 +198,20 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 20);
+
+      // Hide navbar on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setNavVisible(false);
+      } else {
+        setNavVisible(true);
+      }
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Auto-rotate testimonial cards
   useEffect(() => {
@@ -211,15 +222,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50 overflow-x-hidden">
       {/* ✨ Floating Navbar - like a spaceship control panel */}
       <nav
         className={cn(
-          "fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500",
+          "fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300",
           "px-8 py-4 rounded-full",
           "backdrop-blur-md bg-white/70 border border-gray-200/50",
           "shadow-[0_8px_24px_rgba(0,0,0,0.08)]",
-          scrolled && "top-4 bg-white/90 shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
+          scrolled && "top-4 bg-white/90 shadow-[0_12px_32px_rgba(0,0,0,0.12)]",
+          !navVisible && "-translate-y-24 opacity-0"
         )}
       >
         <div className="flex items-center gap-8">
@@ -242,9 +254,9 @@ export default function Home() {
       <section className="pt-44 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6">
-            <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
               Accelerating Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 leading-tight">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 leading-tight pb-1">
                 AI-Driven Development
               </span>
             </h1>
@@ -577,14 +589,14 @@ export default function Home() {
       {/* 🚀 Rotating Cards Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden px-4 -mx-4">
             {/* Cards Container */}
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${activeCard * 100}%)` }}
             >
               {/* Card 1: Hey, I'm Jake Berg */}
-              <div className="w-full flex-shrink-0 px-1">
+              <div className="w-full flex-shrink-0 px-4">
                 <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
                   <div className="relative">
@@ -655,7 +667,7 @@ export default function Home() {
               </div>
 
               {/* Card 2: Testimonial */}
-              <div className="w-full flex-shrink-0 px-1">
+              <div className="w-full flex-shrink-0 px-4">
                 <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
                   <div className="relative flex flex-col justify-center h-full">
