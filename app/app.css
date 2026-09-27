@@ -4,6 +4,10 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Resume page: the font is loaded by that route's links() */
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --color-wine: #8b2c3a;
+  --color-paper: #fffdf9;
 }
 
 html,
