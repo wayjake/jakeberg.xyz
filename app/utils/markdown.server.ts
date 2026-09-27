@@ -145,9 +145,10 @@ export async function getAllPosts(): Promise<PostMetadata[]> {
     } as PostMetadata;
   });
 
-  // Sort by date (newest first)
+  // Sort by date (newest first). Posts sharing a date, like the parts of a series,
+  // fall back to slug order so part 1 lists before part 2.
   return posts.sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
+    return new Date(b.date).getTime() - new Date(a.date).getTime() || a.slug.localeCompare(b.slug);
   });
 }
 
