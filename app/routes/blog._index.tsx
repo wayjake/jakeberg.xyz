@@ -31,18 +31,19 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50 flex flex-col">
+    <div className="flex min-h-dvh flex-col bg-linen text-stone-600 antialiased">
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="text-2xl font-bold text-gray-900">
-              JB<span className="text-blue-600">.</span>
-            </span>
+      <header className="sticky top-0 z-50 border-b border-stone-900/10 bg-paper/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link
+            to="/"
+            className="font-display text-2xl leading-none font-semibold text-stone-900 transition-colors hover:text-wine"
+          >
+            JB<span className="text-wine">.</span>
           </Link>
           <Link
             to="/"
-            className="px-6 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all"
+            className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-stone-50 transition-colors hover:bg-wine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
           >
             Home
           </Link>
@@ -50,12 +51,10 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6">
-            Blog <span className="text-4xl">📝</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <section className="px-6 pt-20 pb-14">
+        <div className="mx-auto max-w-6xl text-center">
+          <h1 className="font-display text-6xl font-medium text-stone-900 md:text-7xl">Blog</h1>
+          <p className="mx-auto mt-6 max-w-3xl text-xl text-pretty text-stone-600">
             Technical insights, tutorials, and thoughts on modern web
             development, architecture, and engineering best practices.
           </p>
@@ -63,16 +62,16 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="pb-20 px-6 flex-grow">
-        <div className="max-w-6xl mx-auto">
+      <section className="flex-grow px-6 pb-24">
+        <div className="mx-auto max-w-6xl">
           {posts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">
+            <div className="py-12 text-center">
+              <p className="text-lg text-stone-600">
                 No blog posts yet. Check back soon!
               </p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => {
                 const postDate = new Date(post.date);
                 const formattedDate = postDate.toLocaleDateString("en-US", {
@@ -91,38 +90,34 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                   <Link
                     key={post.slug}
                     to={`/blog/${post.slug}`}
-                    className="group"
+                    className="group rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-wine"
                   >
-                    <article className="h-full p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative overflow-hidden">
-                      {/* Decorative gradient corner */}
-                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
+                    <article className="flex h-full flex-col rounded-xl bg-paper p-8 ring-1 ring-stone-900/10 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_24px_48px_-28px_rgb(68_64_60/0.4)]">
+                      {/* Date */}
+                      <time
+                        dateTime={post.date}
+                        className="mb-3 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase"
+                      >
+                        {formattedDate}
+                      </time>
 
-                      <div className="relative h-full flex flex-col">
-                        {/* Date */}
-                        <time
-                          dateTime={post.date}
-                          className="text-sm text-blue-600 font-medium mb-3"
-                        >
-                          {formattedDate}
-                        </time>
+                      {/* Title */}
+                      <h2 className="mb-3 font-display text-[1.75rem] leading-tight font-semibold text-stone-900 transition-colors group-hover:text-wine">
+                        {post.title}
+                      </h2>
 
-                        {/* Title */}
-                        <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                          {post.title}
-                        </h2>
-
-                        {/* Description */}
-                        <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
+                      {/* Description */}
+                      {/* The wrapper takes the spare height so the clamp stays at three lines */}
+                      <div className="mb-6 flex-grow">
+                        <p className="line-clamp-3 text-stone-600">
                           {post.description}
                         </p>
+                      </div>
 
-                        {/* Read more link */}
-                        <div className="flex items-center text-blue-600 font-medium group-hover:gap-2 transition-all">
-                          Read article
-                          <span className="inline-block transition-transform group-hover:translate-x-1">
-                            →
-                          </span>
-                        </div>
+                      {/* Read more link */}
+                      <div className="flex items-center gap-1 text-sm font-medium text-stone-900 transition-all group-hover:gap-2 group-hover:text-wine">
+                        Read article
+                        <span aria-hidden="true">→</span>
                       </div>
                     </article>
                   </Link>
@@ -134,8 +129,8 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6 bg-white/50">
-        <div className="max-w-6xl mx-auto text-center text-gray-600">
+      <footer className="border-t border-stone-900/10 bg-paper/60 px-6 py-8">
+        <div className="mx-auto max-w-6xl text-center text-sm text-stone-500">
           <p>© {new Date().getFullYear()} Jake Berg. All rights reserved.</p>
         </div>
       </footer>

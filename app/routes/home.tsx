@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, type ReactNode } from "react";
 import { cn } from "../utils";
 import { Form, useNavigation, useActionData, useLoaderData } from "react-router";
 import crypto from "crypto";
@@ -77,17 +77,17 @@ function verifyCaptcha(token: string, userAnswer: string): { valid: boolean; err
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Jake Berg - Fractional CTO | Technical Leadership & Strategic Guidance" },
-    { name: "description", content: "Fractional CTO services providing technical leadership, code reviews, team management, and strategic guidance. I help close the gap between ambitious goals and reality. Expert in React, Node.js, and modern architectures." },
-    { name: "keywords", content: "Jake Berg, Fractional CTO, Technical Leadership, CTO as a Service, Tech Strategy, Code Review, Team Management, React, Node.js, Infrastructure, Software Architecture" },
-    { property: "og:title", content: "Jake Berg - Fractional CTO | Technical Leadership & Strategic Guidance" },
-    { property: "og:description", content: "Fractional CTO services helping companies bridge the gap between vision and execution with hands-on technical leadership." },
+    { title: "Jake Berg - Co-founder, Fractional CTO & Hands-on Engineer" },
+    { name: "description", content: "Co-founder, CTO, and hands-on engineer helping startups build the product, scale the team, and grow the business. Strategy sessions, pair programming, hourly engineering, and fractional CTO leadership." },
+    { name: "keywords", content: "Jake Berg, Fractional CTO, Principal Engineer, Technical Co-founder, Technical Leadership, CTO as a Service, Tech Strategy, Code Review, Pair Programming, Contract Engineering, React, Node.js, Claude Code, Software Architecture" },
+    { property: "og:title", content: "Jake Berg - Co-founder, Fractional CTO & Hands-on Engineer" },
+    { property: "og:description", content: "Co-founder, CTO, and hands-on engineer helping startups build the product, scale the team, and grow the business." },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://jakeberg.xyz" },
     { property: "og:image", content: "https://jakeberg.xyz/me.jpg" },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: "Jake Berg - Fractional CTO" },
-    { name: "twitter:description", content: "Fractional CTO services helping companies bridge the gap between ambitious goals and reality with hands-on technical leadership." },
+    { name: "twitter:title", content: "Jake Berg - Co-founder, Fractional CTO & Hands-on Engineer" },
+    { name: "twitter:description", content: "Co-founder, CTO, and hands-on engineer helping startups build the product, scale the team, and grow the business." },
     { name: "twitter:image", content: "https://jakeberg.xyz/me.jpg" },
     { name: "author", content: "Jake Berg" },
     { name: "robots", content: "index, follow" },
@@ -152,6 +152,111 @@ export async function action({ request }: Route.ActionArgs) {
     console.error("Failed to send Telegram message:", error);
     return { error: "Failed to send message. Please check your connection and try again." };
   }
+}
+
+type Service = {
+  name: string;
+  tagline: string;
+  price: string;
+  prefix?: string;
+  unit?: string;
+  lead: string;
+  points: string[];
+  note: string;
+  featured?: boolean;
+};
+
+const services: Service[] = [
+  {
+    name: "Strategy Session",
+    tagline: "One-time consultation",
+    price: "$1,500",
+    lead: "Perfect for immediate guidance:",
+    points: [
+      "Architecture review & recommendations",
+      "Technology stack evaluation",
+      "Roadmap planning for future success",
+      "Team structure recommendations",
+    ],
+    note: "Get clarity on your technical direction with actionable insights you can implement immediately.",
+  },
+  {
+    name: "Development Session",
+    tagline: "Weekly pair programming",
+    price: "$500",
+    unit: "/hour",
+    lead: "Ship faster with hands-on guidance:",
+    points: [
+      "Pair code through your project together",
+      "End each session with working code",
+      "Clear next steps to work on between sessions",
+      "Solve in 1 hour what takes weeks alone",
+    ],
+    note: "Walk away with a finished product, not just advice.",
+    featured: true,
+  },
+  {
+    name: "Engineering Hours",
+    tagline: "Individual contributor work",
+    price: "$350",
+    unit: "/hour",
+    lead: "I build it for you:",
+    points: [
+      "Features built end to end in your codebase",
+      "Bug fixes, refactors, and performance work",
+      "Integrations, APIs, and infrastructure",
+      "Written handoff notes so your team can take it from there",
+    ],
+    note: "Senior engineering capacity without a full-time hire.",
+  },
+  {
+    name: "Fractional CTO",
+    tagline: "Hands-on leadership",
+    price: "$15,000",
+    prefix: "Starting at",
+    unit: "/mo",
+    lead: "Full technical leadership:",
+    points: [
+      "Active team management",
+      "Hands-on coding & architecture",
+      "Infrastructure deployment",
+      "Executive alignment meetings",
+      "Product vision to development bridge",
+    ],
+    note: "Get a seasoned CTO without the full-time commitment or cost.",
+  },
+];
+
+const capabilities = [
+  "Product engineering",
+  "Architecture",
+  "AI-driven development",
+  "Claude Code",
+  "React & Node.js",
+  "Team building",
+  "Operations",
+  "Growth",
+];
+
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Resume", href: "/resume" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "#contact" },
+];
+
+const fieldClass =
+  "w-full rounded-md border border-stone-300 bg-white px-4 py-3 text-stone-900 placeholder-stone-400 transition focus:border-wine focus:ring-2 focus:ring-wine/20 focus:outline-none";
+
+// Italic serif title trailed by a hairline, the same heading the resume uses
+function SectionHeading({ children }: { children: ReactNode }) {
+  return (
+    <h2 className="mb-10 flex items-center gap-5 font-display text-4xl leading-none font-medium text-stone-900 italic md:text-5xl">
+      {children}
+      <span aria-hidden="true" className="h-px flex-1 bg-stone-300" />
+    </h2>
+  );
 }
 
 export default function Home() {
@@ -264,84 +369,82 @@ export default function Home() {
   }, [startAutoRotate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50 overflow-x-hidden">
+    <div className="min-h-dvh overflow-x-hidden bg-paper text-stone-600 antialiased">
       {/* ✨ Floating Navbar - like a spaceship control panel */}
       <nav
         className={cn(
-          "fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300",
-          "px-8 py-4 rounded-full",
-          "backdrop-blur-md bg-white/70 border border-gray-200/50",
-          "shadow-[0_8px_24px_rgba(0,0,0,0.08)]",
-          scrolled && "top-4 bg-white/90 shadow-[0_12px_32px_rgba(0,0,0,0.12)]",
+          "fixed top-6 left-1/2 z-50 -translate-x-1/2 transition-all duration-300",
+          "rounded-full px-6 py-3 sm:px-8",
+          "bg-paper/75 ring-1 ring-stone-900/10 backdrop-blur-md",
+          "shadow-[0_8px_24px_-8px_rgb(68_64_60/0.18)]",
+          scrolled && "top-4 bg-paper/90 shadow-[0_12px_32px_-10px_rgb(68_64_60/0.25)]",
           !navVisible && "-translate-y-24 opacity-0"
         )}
       >
-        <div className="flex items-center gap-8">
-          <a href="#" className="text-gray-900 font-bold text-lg hover:text-rose-500 transition-colors">
-            JB<span className="text-rose-500">.</span>
+        <div className="flex items-center gap-6 sm:gap-8">
+          <a href="#" className="font-display text-2xl leading-none font-semibold text-stone-900 transition-colors hover:text-wine">
+            JB<span className="text-wine">.</span>
           </a>
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
-            <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
-            <a href="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">Blog</a>
-            <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
+          <div className="hidden items-center gap-6 text-sm md:flex">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} className="text-stone-500 transition-colors hover:text-stone-900">
+                {link.label}
+              </a>
+            ))}
           </div>
-          <a href="#contact" className="ml-4 px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-full transition-colors text-sm font-medium whitespace-nowrap">
-            Let's Talk
+          <a
+            href="#contact"
+            className="rounded-full bg-stone-900 px-4 py-2 text-sm font-medium whitespace-nowrap text-stone-50 transition-colors hover:bg-wine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
+          >
+            Let's talk
           </a>
         </div>
       </nav>
 
       {/* 🚀 Hero Section - where the magic begins */}
-      <section className="pt-44 pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center space-y-6">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
-              Accelerating Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 leading-tight pb-1">
-                AI-Driven Development
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              AI can help you build an app, but when you hit walls that cost weeks of frustration—I solve them in a single session.
-            </p>
-            <div className="flex gap-4 justify-center pt-4">
-              <a
-                href="#services"
-                className="px-8 py-4 bg-rose-500 text-white rounded-full font-medium hover:bg-rose-600 hover:shadow-lg transition-all transform hover:-translate-y-1"
-              >
-                View Services
-              </a>
-              <a
-                href="/resume"
-                className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all inline-block"
-              >
-                View CV
-              </a>
-            </div>
+      <section className="px-6 pt-44 pb-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-xs font-medium tracking-[0.14em] text-balance text-wine uppercase sm:tracking-[0.2em]">Co-founder · CTO · Hands-on engineer</p>
+          <h1 className="mt-6 font-display text-5xl leading-[1.02] font-medium tracking-[-0.01em] text-balance text-stone-900 md:text-7xl">
+            Build the product, scale the team, <em className="text-wine">grow the business.</em>
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-pretty text-stone-600 md:text-xl">
+            I'm Jake Berg. AI can help you build an app, but when you hit walls that cost weeks of frustration—I solve
+            them in a single session.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 pt-10">
+            <a
+              href="#services"
+              className="rounded-full bg-stone-900 px-8 py-4 font-medium text-stone-50 shadow-sm shadow-stone-900/20 transition duration-200 hover:-translate-y-0.5 hover:bg-wine active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
+            >
+              View services
+            </a>
+            <a
+              href="/resume"
+              className="rounded-full bg-paper px-8 py-4 font-medium text-stone-900 ring-1 ring-stone-300 transition duration-200 hover:-translate-y-0.5 hover:ring-stone-400 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
+            >
+              View CV
+            </a>
           </div>
         </div>
       </section>
 
       {/* 👨‍💻 About Me Section - get to know me */}
-      <section id="about" className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
-            About Me <span className="text-blue-600">👋</span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl blur-xl opacity-30"></div>
-              <img
-                src="/me.jpg"
-                alt="Jake Berg"
-                className="relative rounded-2xl shadow-xl w-full max-w-md mx-auto"
-              />
-            </div>
+      <section id="about" className="bg-linen px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeading>About me</SectionHeading>
+          <div className="grid items-center gap-14 md:grid-cols-2 md:gap-16">
+            <figure className="mx-auto w-full max-w-md -rotate-1 bg-paper p-3 pb-4 shadow-[0_1px_2px_rgb(68_64_60/0.08),0_24px_48px_-20px_rgb(68_64_60/0.35)] ring-1 ring-stone-900/5 transition-transform duration-300 hover:rotate-0">
+              <img src="/me.jpg" alt="Jake Berg" className="w-full" />
+              <figcaption className="mt-3 text-center font-display text-lg text-stone-500 italic">Burbank, California</figcaption>
+            </figure>
             <div className="space-y-6">
-              <div className="space-y-4 text-gray-700">
+              <div className="space-y-5 text-[1.0625rem] leading-relaxed text-pretty">
                 <p>
-                  With over a decade of experience shipping software, I've built everything from scrappy MVPs that landed funding to enterprise systems serving millions of users. What I enjoy most is taking something complex and making it work.
+                  I've spent over a decade on every side of a software company. I co-founded Dubsado and grew it from{" "}
+                  <strong className="font-semibold text-stone-900">$0 to $8M ARR</strong>, ran engineering as CTO, then
+                  moved into operations and growth. Along the way I've built everything from scrappy MVPs that landed
+                  funding to enterprise systems serving millions of users.
                 </p>
                 <p>
                   I'm focused on how AI is changing development. Tools like Claude Code are core to my workflow, letting me tackle problems that used to take days in hours. I help clients leverage these tools as a genuine multiplier for what small teams can accomplish.
@@ -350,161 +453,80 @@ export default function Home() {
                   What sets me apart is understanding that your software exists to serve your business. Shipping the right feature matters more than perfect architecture. I help you make trade-offs intelligently—moving fast without accumulating technical debt.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "⚛️ React",
-                  "👨‍💻 Node.js",
-                  "🤖 Claude Code",
-                  "▲ Vercel",
-                  "🔌 API Integration",
-                  "📦 Product Development"
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-100"
+              <ul className="flex flex-wrap gap-2">
+                {capabilities.map((capability) => (
+                  <li
+                    key={capability}
+                    className="rounded-md bg-paper px-3 py-1.5 text-[0.6875rem] font-medium tracking-[0.12em] text-stone-700 uppercase ring-1 ring-stone-900/10"
                   >
-                    {tag}
-                  </span>
+                    {capability}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 💫 Fractional CTO Services */}
-      <section id="services" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
-            My services <span className="text-blue-600"> 🎯</span>
-          </h2>
-          <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-            Technical leadership that scales with your needs. Choose the engagement level that fits your business.
+      {/* 💫 Services */}
+      <section id="services" className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeading>Services</SectionHeading>
+          <p className="-mt-4 mb-12 max-w-2xl text-lg text-pretty text-stone-600">
+            From a single strategy call to hands-on build work to ongoing technical leadership. Choose the engagement
+            that fits where you are.
           </p>
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Strategy Call */}
-            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
-              <div className="relative">
-                <div className="text-3xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">Strategy Session</h3>
-                <p className="text-3xl font-bold text-gray-900 mb-2">$500</p>
-                <p className="text-blue-600 font-semibold mb-4">One-Time Consultation</p>
-                <div className="space-y-3 text-gray-700">
-                  <p className="font-medium">Perfect for immediate guidance:</p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Architecture review & recommendations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Technology stack evaluation</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Roadmap planning for future success</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Team structure recommendations</span>
-                    </li>
-                  </ul>
-                  <p className="text-sm text-gray-600 pt-4">
-                    Get clarity on your technical direction with actionable insights you can implement immediately.
+          <div className="grid gap-6 md:grid-cols-2">
+            {services.map((service) => (
+              <article
+                key={service.name}
+                className={cn(
+                  "relative flex flex-col rounded-xl bg-paper p-8 ring-1 transition duration-300 hover:-translate-y-0.5 md:p-10",
+                  service.featured
+                    ? "shadow-[0_24px_48px_-24px_rgb(139_44_58/0.35)] ring-wine/40"
+                    : "ring-stone-900/10 hover:shadow-[0_24px_48px_-28px_rgb(68_64_60/0.35)]"
+                )}
+              >
+                {service.featured && (
+                  <p className="mb-3 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase md:absolute md:top-10 md:right-10 md:mb-0">
+                    Most popular
                   </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Development Session */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-300 shadow-lg relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
-                Most Popular
-              </div>
-              <div className="relative">
-                <div className="text-3xl mb-4">💻</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">Development Session</h3>
-                <p className="text-3xl font-bold text-gray-900 mb-2">$350<span className="text-lg font-normal text-gray-500">/session</span></p>
-                <p className="text-blue-600 font-semibold mb-4">Weekly Pair Programming</p>
-                <div className="space-y-3 text-gray-700">
-                  <p className="font-medium">Ship faster with hands-on guidance:</p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Pair code through your project together</span>
+                )}
+                <h3 className="font-display text-3xl leading-tight font-semibold text-stone-900">{service.name}</h3>
+                <p className="mt-1 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase">{service.tagline}</p>
+                <p className="mt-6 font-display text-5xl leading-none font-medium text-stone-900 lining-nums">
+                  {service.prefix && (
+                    <span className="mr-2 font-sans text-sm font-normal text-stone-500">{service.prefix}</span>
+                  )}
+                  {service.price}
+                  {service.unit && <span className="ml-1 font-sans text-base font-normal text-stone-500">{service.unit}</span>}
+                </p>
+                <div aria-hidden="true" className="my-6 h-px bg-stone-200" />
+                <p className="font-medium text-stone-800">{service.lead}</p>
+                <ul className="mt-3 space-y-2">
+                  {service.points.map((point) => (
+                    <li key={point} className="flex gap-3">
+                      <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-wine" />
+                      {point}
                     </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>End each session with working code</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Clear next steps to work on between sessions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Solve in 1 hour what takes weeks alone</span>
-                    </li>
-                  </ul>
-                  <p className="text-sm text-gray-600 pt-4">
-                    Walk away with a finished product, not just advice.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Fractional CTO */}
-            <div className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all relative">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-bl-full opacity-50" />
-              <div className="relative">
-                <div className="text-3xl mb-4">🚀</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">Fractional CTO</h3>
-                <p className="text-3xl font-bold text-gray-900 mb-2"><span className="text-lg font-normal text-gray-500">Starting at </span>$5,000<span className="text-lg font-normal text-gray-500">/mo</span></p>
-                <p className="text-blue-600 font-semibold mb-4">Hands-On Leadership</p>
-                <div className="space-y-3 text-gray-700">
-                  <p className="font-medium">Full technical leadership:</p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Active team management</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Hands-on coding & architecture</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Infrastructure deployment</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Executive alignment meetings</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Product vision to development bridge</span>
-                    </li>
-                  </ul>
-                  <p className="text-sm text-gray-600 pt-4">
-                    Get a seasoned CTO without the full-time commitment or cost.
-                  </p>
-                </div>
-              </div>
-            </div>
+                  ))}
+                </ul>
+                <p className="mt-auto pt-6 text-sm text-stone-500">{service.note}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 📬 Contact Section - let's connect */}
-      <section id="contact" className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Ready to Build Something Amazing?
+      <section id="contact" className="bg-linen px-6 py-24">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-12 text-center">
+            <h2 className="font-display text-4xl font-medium text-balance text-stone-900 italic md:text-5xl">
+              Let's talk about what you're building
             </h2>
-            <p className="text-xl text-gray-600">
-              Let's transform your vision into reality. I'm just a message away.
+            <p className="mt-4 text-lg text-stone-600">
+              Tell me where you're stuck or where you're headed. I'm just a message away.
             </p>
           </div>
 
@@ -517,11 +539,11 @@ export default function Home() {
             )}
             {showSuccess && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-700 font-medium">Message sent successfully!</p>
+                <p className="text-green-700 font-medium">Message sent.</p>
                 <p className="text-green-600 text-sm mt-1">I'll get back to you as soon as possible.</p>
               </div>
             )}
-            <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+            <div className="space-y-6 rounded-xl bg-paper p-8 shadow-[0_24px_48px_-28px_rgb(68_64_60/0.35)] ring-1 ring-stone-900/10">
               {/* Honeypot field - hidden from humans, bots will fill it */}
               <input
                 type="text"
@@ -536,34 +558,20 @@ export default function Home() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-stone-700">
                     Name
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all placeholder-gray-400"
-                    placeholder="John Doe"
-                  />
+                  <input type="text" name="name" id="name" required className={fieldClass} placeholder="Your name" />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-stone-700">
                     Email
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all placeholder-gray-400"
-                    placeholder="john@example.com"
-                  />
+                  <input type="email" name="email" id="email" required className={fieldClass} placeholder="you@company.com" />
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-stone-700">
                   Message
                 </label>
                 <textarea
@@ -571,32 +579,32 @@ export default function Home() {
                   id="message"
                   rows={6}
                   required
-                  className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none placeholder-gray-400"
+                  className={cn(fieldClass, "resize-none")}
                   placeholder="Tell me about your project..."
                 />
               </div>
               <div>
-                <label htmlFor="verification" className="block text-sm font-medium text-gray-700 mb-2">
-                  {loaderData.captchaQuestion} <span className="text-gray-500">(Anti-bot verification)</span>
+                <label htmlFor="verification" className="mb-2 block text-sm font-medium text-stone-700">
+                  {loaderData.captchaQuestion} <span className="text-stone-500">(Anti-bot verification)</span>
                 </label>
                 <input
                   type="text"
                   name="verification"
                   id="verification"
                   required
-                  className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all placeholder-gray-400"
+                  className={fieldClass}
                   placeholder="Type your answer..."
                 />
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-rose-500 text-white rounded-full font-medium hover:bg-rose-600 hover:shadow-lg transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
+                className="flex w-full items-center justify-center gap-3 rounded-full bg-stone-900 px-8 py-4 font-medium text-stone-50 transition duration-200 hover:-translate-y-0.5 hover:bg-wine active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-stone-900"
               >
                 {isSubmitting ? "Sending..." : (
                   <>
-                    Send Message
-                    <span className="text-xs opacity-75 font-normal">
+                    Send message
+                    <span className="text-xs font-normal opacity-60">
                       {isMac ? '⌘ + Return' : 'Ctrl + Enter'}
                     </span>
                   </>
@@ -608,7 +616,7 @@ export default function Home() {
           <div className="flex gap-4 justify-center mt-8">
             <a
               href="https://github.com/wayjake"
-              className="w-12 h-12 flex items-center justify-center bg-white text-gray-700 rounded-full border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-paper text-stone-600 ring-1 ring-stone-900/10 transition hover:text-wine hover:ring-stone-900/20"
             >
               <span className="sr-only">GitHub</span>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -617,7 +625,7 @@ export default function Home() {
             </a>
             <a
               href="https://www.linkedin.com/in/jakedaneberg"
-              className="w-12 h-12 flex items-center justify-center bg-white text-gray-700 rounded-full border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-paper text-stone-600 ring-1 ring-stone-900/10 transition hover:text-wine hover:ring-stone-900/20"
             >
               <span className="sr-only">LinkedIn</span>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -629,10 +637,10 @@ export default function Home() {
       </section>
 
       {/* 🚀 Rotating Cards Section */}
-      <section className="py-20 px-6">
+      <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <div
-            className="relative overflow-hidden px-4 -mx-4 touch-pan-y"
+            className="relative overflow-hidden px-4 -mx-4 py-6 -my-6 touch-pan-y"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -644,70 +652,50 @@ export default function Home() {
             >
               {/* Card 1: Hey, I'm Jake Berg */}
               <div className="w-full flex-shrink-0 px-4">
-                <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
-                  <div className="relative">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                      Hey, I'm Jake Berg, and you're a startup—
-                      <span className="block text-rose-500 mt-2">I help close the gap between ambitious goals and reality.</span>
-                    </h2>
-                    <div className="space-y-4 text-lg text-gray-700">
-                      <p>
-                        You need to focus on marketing and sales. I want you to know that your software is being handled
-                        so you can focus on the parts that you do best.
-                      </p>
-                      <p className="font-semibold text-gray-900">
-                        I focus on the future and what you will need. From scalable code to hiring a team.
-                      </p>
-                    </div>
+                <div className="relative min-h-[420px] overflow-hidden rounded-2xl bg-paper p-10 shadow-[0_24px_48px_-28px_rgb(68_64_60/0.4)] ring-1 ring-stone-900/10 md:p-12">
+                  <h2 className="mb-6 font-display text-3xl leading-tight font-medium text-stone-900 md:text-4xl">
+                    Hey, I'm Jake Berg, and you're a startup—
+                    <span className="mt-2 block text-wine italic">I help close the gap between ambitious goals and reality.</span>
+                  </h2>
+                  <div className="space-y-4 text-lg text-stone-600">
+                    <p>
+                      You need to focus on marketing and sales. I want you to know that your software is being handled
+                      so you can focus on the parts that you do best.
+                    </p>
+                    <p className="font-medium text-stone-900">
+                      I focus on the future and what you will need. From scalable code to hiring a team.
+                    </p>
+                  </div>
 
-                    {/* Companies section */}
-                    <div className="mt-12 pt-8 border-t border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">Companies I've worked with</h3>
-                      <div className="grid grid-cols-3 gap-8 items-center">
-                        <div className="flex justify-center">
+                  {/* Companies section */}
+                  <div className="mt-12 border-t border-stone-200 pt-8">
+                    <h3 className="mb-6 text-center text-[0.6875rem] font-medium tracking-[0.14em] text-stone-500 uppercase">
+                      Companies I've worked with
+                    </h3>
+                    <div className="grid grid-cols-3 items-center gap-8">
+                      {[
+                        { name: "Dubsado", href: "https://www.dubsado.com/", logo: "/dubsado-logo.webp", height: "h-10" },
+                        { name: "Social Curator", href: "https://www.socialcurator.com/", logo: "/social-curator-logo.png", height: "h-12" },
+                        { name: "RoboLike", href: "https://www.robolike.com/", logo: "/robolike-logo.png", height: "h-10" },
+                      ].map((company) => (
+                        <div key={company.name} className="flex justify-center">
                           <a
-                            href="https://www.dubsado.com/"
+                            href={company.href}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="transition-transform hover:scale-105"
                           >
                             <img
-                              src="/dubsado-logo.webp"
-                              alt="Dubsado"
-                              className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                              src={company.logo}
+                              alt={company.name}
+                              className={cn(
+                                company.height,
+                                "object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                              )}
                             />
                           </a>
                         </div>
-                        <div className="flex justify-center">
-                          <a
-                            href="https://www.socialcurator.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="transition-transform hover:scale-105"
-                          >
-                            <img
-                              src="/social-curator-logo.png"
-                              alt="Social Curator"
-                              className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                            />
-                          </a>
-                        </div>
-                        <div className="flex justify-center">
-                          <a
-                            href="https://www.robolike.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="transition-transform hover:scale-105"
-                          >
-                            <img
-                              src="/robolike-logo.png"
-                              alt="RoboLike"
-                              className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
-                            />
-                          </a>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -715,17 +703,16 @@ export default function Home() {
 
               {/* Card 2: Testimonial */}
               <div className="w-full flex-shrink-0 px-4">
-                <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 relative overflow-hidden min-h-[420px]">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-rose-100 to-pink-100 rounded-bl-full opacity-30" />
-                  <div className="relative flex flex-col justify-center h-full">
-                    <div className="text-5xl text-rose-300 mb-4">"</div>
-                    <blockquote className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
+                <div className="relative min-h-[420px] overflow-hidden rounded-2xl bg-paper p-10 shadow-[0_24px_48px_-28px_rgb(68_64_60/0.4)] ring-1 ring-stone-900/10 md:p-12">
+                  <div className="relative flex h-full flex-col justify-center">
+                    <div aria-hidden="true" className="font-display text-7xl leading-none text-wine/30">“</div>
+                    <blockquote className="mb-8 font-display text-2xl leading-snug text-stone-700 italic md:text-[1.75rem]">
                       Jake helped us answer some big architectural decisions before we started coding. We were able to proceed through our first 3 months of development with a lot more confidence that we were on the right path. We appreciate Jake's guidance and continued support with one-off calls whenever we get stuck.
                     </blockquote>
                     <div className="mt-auto">
-                      <p className="font-bold text-gray-900 text-lg">Michael T.</p>
-                      <p className="text-gray-600">Founder, ShieldTrack Solutions</p>
-                      <p className="text-sm text-rose-500 mt-1">Strategy Session Client</p>
+                      <p className="text-lg font-semibold text-stone-900">Michael T.</p>
+                      <p className="text-stone-500">Founder, ShieldTrack Solutions</p>
+                      <p className="mt-2 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase">Strategy Session Client</p>
                     </div>
                   </div>
                 </div>
@@ -739,10 +726,10 @@ export default function Home() {
                   key={index}
                   onClick={() => { setActiveCard(index); startAutoRotate(); }}
                   className={cn(
-                    "w-3 h-3 rounded-full transition-all",
+                    "h-2 w-2 cursor-pointer rounded-full transition-all",
                     activeCard === index
-                      ? "bg-rose-500 w-8"
-                      : "bg-gray-300 hover:bg-gray-400"
+                      ? "w-8 bg-wine"
+                      : "bg-stone-300 hover:bg-stone-400"
                   )}
                   aria-label={`Go to card ${index + 1}`}
                 />
@@ -753,8 +740,8 @@ export default function Home() {
       </section>
 
       {/* 🌟 Footer - the sign-off */}
-      <footer className="py-8 px-6 border-t border-gray-200">
-        <div className="max-w-6xl mx-auto text-center text-gray-500">
+      <footer className="border-t border-stone-200 px-6 py-8">
+        <div className="mx-auto max-w-6xl text-center text-sm text-stone-500">
           <p>© {new Date().getFullYear()} Jake Berg. Crafted with passion and pixels.</p>
         </div>
       </footer>
