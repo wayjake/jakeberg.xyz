@@ -10,14 +10,6 @@ export function meta({ }: Route.MetaArgs) {
   ];
 }
 
-export function links() {
-  return [
-    { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-    { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" }
-  ];
-}
-
 // Scoped to this page so printing a blog post keeps the browser defaults
 const printStyles = `
   @page { size: letter; margin: 0.3in 0.45in; }
@@ -187,7 +179,7 @@ export default function Resume() {
   };
 
   return (
-    <div className="resume min-h-dvh bg-[#eeeae3] pb-16 text-stone-600 antialiased print:bg-white print:pb-0">
+    <div className="resume min-h-dvh bg-linen pb-16 text-stone-600 antialiased print:bg-white print:pb-0">
       <style>{printStyles}</style>
 
       <nav className="mx-auto flex max-w-[52rem] items-center justify-between px-5 py-5 sm:px-0 print:hidden">

@@ -4,13 +4,22 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  /* Resume page: the font is loaded by that route's links() */
+  /* Display serif and warm palette shared by every page; the font loads in root.tsx */
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
   --color-wine: #8b2c3a;
   --color-paper: #fffdf9;
+  --color-linen: #eeeae3;
 }
 
 html,
 body {
   @apply bg-white;
+}
+
+/* Cormorant defaults to old-style figures, which turn "N64" into "N6₄" in titles */
+h1,
+h2,
+h3,
+h4 {
+  font-variant-numeric: lining-nums;
 }

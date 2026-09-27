@@ -103,25 +103,26 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-cyan-50 flex flex-col">
+    <div className="flex min-h-dvh flex-col bg-linen text-stone-600 antialiased">
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="text-2xl font-bold text-gray-900">
-              JB<span className="text-blue-600">.</span>
-            </span>
+      <header className="sticky top-0 z-50 border-b border-stone-900/10 bg-paper/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+          <Link
+            to="/"
+            className="font-display text-2xl leading-none font-semibold text-stone-900 transition-colors hover:text-wine"
+          >
+            JB<span className="text-wine">.</span>
           </Link>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               to="/blog"
-              className="px-6 py-2 text-gray-700 hover:text-gray-900 transition-colors"
+              className="px-3 py-2 text-sm text-stone-500 transition-colors hover:text-stone-900 sm:px-4"
             >
               ← Blog
             </Link>
             <Link
               to="/"
-              className="px-6 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all"
+              className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-stone-50 transition-colors hover:bg-wine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
             >
               Home
             </Link>
@@ -130,66 +131,64 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
       </header>
 
       {/* Article */}
-      <article className="py-12 px-6 flex-grow">
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12">
+      <article className="flex-grow px-4 py-12 sm:px-6">
+        <div className="mx-auto max-w-4xl bg-paper p-7 shadow-[0_1px_2px_rgb(68_64_60/0.06),0_24px_48px_-24px_rgb(68_64_60/0.28)] ring-1 ring-stone-900/5 md:p-14">
           {/* Article Header */}
           <header className="mb-12">
-            <div className="mb-6">
-              <time
-                dateTime={post.metadata.date}
-                className="text-blue-600 font-medium"
-              >
+            <div className="mb-6 text-[0.6875rem] font-medium tracking-[0.14em] uppercase">
+              <time dateTime={post.metadata.date} className="text-wine">
                 {formattedDate}
               </time>
-              <span className="text-gray-400 mx-2">•</span>
-              <span className="text-gray-600">
+              <span className="mx-2 text-stone-300">•</span>
+              <span className="text-stone-500">
                 {post.readingTime} min read
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="mb-6 font-display text-5xl leading-[1.05] font-medium text-balance text-stone-900 md:text-6xl">
               {post.metadata.title}
             </h1>
 
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="font-display text-xl leading-snug text-pretty text-stone-600 italic md:text-2xl">
               {post.metadata.description}
             </p>
 
-            <div className="mt-6 flex items-center gap-4">
-              <div>
-                <p className="text-gray-900 font-medium">
-                  {post.metadata.author}
-                </p>
-              </div>
+            <p className="mt-6 text-sm font-medium text-stone-900">
+              {post.metadata.author}
+            </p>
+
+            {/* The same double rule that closes the resume header */}
+            <div aria-hidden="true" className="mt-8 border-t-2 border-stone-900 pt-[3px]">
+              <div className="border-t border-stone-900" />
             </div>
           </header>
 
           {/* Article Content */}
           <div
-            className="prose prose-lg max-w-none
-              prose-headings:font-bold prose-headings:text-gray-900
-              prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-              prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-              prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
-              prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-gray-900 prose-strong:font-semibold
-              prose-code:text-blue-600 prose-code:bg-blue-50 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:before:content-[''] prose-code:after:content-['']
-              prose-pre:bg-gray-50 prose-pre:text-gray-900 prose-pre:border prose-pre:border-gray-200 prose-pre:rounded-xl prose-pre:shadow-lg prose-pre:overflow-x-auto
+            className="prose prose-lg prose-stone max-w-none [--tw-prose-bullets:var(--color-wine)] [--tw-prose-counters:var(--color-wine)]
+              prose-headings:text-stone-900
+              prose-h2:font-display prose-h2:text-4xl prose-h2:font-semibold prose-h2:mt-14 prose-h2:mb-5
+              prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3
+              prose-p:text-stone-700 prose-p:leading-relaxed prose-p:mb-6
+              prose-a:text-wine prose-a:underline prose-a:decoration-wine/30 prose-a:underline-offset-2 hover:prose-a:decoration-wine
+              prose-strong:text-stone-900 prose-strong:font-semibold
+              prose-code:text-wine prose-code:bg-stone-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-[''] prose-code:after:content-['']
+              prose-pre:bg-stone-50 prose-pre:text-stone-900 prose-pre:border prose-pre:border-stone-200 prose-pre:rounded-lg prose-pre:overflow-x-auto
               prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
               prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
-              prose-li:text-gray-700 prose-li:my-2
-              prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-700
-              prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8 prose-img:mx-auto prose-img:max-w-full
-              [&_.mermaid]:my-8 [&_.mermaid]:flex [&_.mermaid]:justify-center [&_.mermaid]:bg-white [&_.mermaid]:p-6 [&_.mermaid]:rounded-xl [&_.mermaid]:shadow-lg
-              [&_pre_code]:bg-transparent [&_pre_code]:text-gray-900 [&_pre_code]:p-0"
+              prose-li:text-stone-700 prose-li:my-2
+              prose-blockquote:border-l-2 prose-blockquote:border-wine prose-blockquote:pl-6 prose-blockquote:font-display prose-blockquote:text-2xl prose-blockquote:font-normal prose-blockquote:italic prose-blockquote:text-stone-700
+              prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:mx-auto prose-img:max-w-full
+              [&_.mermaid]:my-8 [&_.mermaid]:flex [&_.mermaid]:justify-center [&_.mermaid]:bg-white [&_.mermaid]:p-6 [&_.mermaid]:rounded-lg [&_.mermaid]:ring-1 [&_.mermaid]:ring-stone-900/10
+              [&_pre_code]:bg-transparent [&_pre_code]:text-stone-900 [&_pre_code]:p-0"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
           {/* Back to Blog */}
-          <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="mt-16 border-t border-stone-200 pt-8">
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 font-medium text-wine transition-all hover:gap-3"
             >
               <span>←</span>
               Back to all posts
@@ -199,8 +198,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
       </article>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6 bg-white/50 mt-12">
-        <div className="max-w-4xl mx-auto text-center text-gray-600">
+      <footer className="mt-12 border-t border-stone-900/10 bg-paper/60 px-6 py-8">
+        <div className="mx-auto max-w-4xl text-center text-sm text-stone-500">
           <p>© {new Date().getFullYear()} Jake Berg. All rights reserved.</p>
         </div>
       </footer>
