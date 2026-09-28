@@ -197,7 +197,6 @@ And in three-hour windows from 6am, with posts, location pings, and chat message
 - **Likes were the most-used feature by far.** Every post in the app, 76 in all, got at least one like, and one got 13.
 - **Chat was quiet, but threads got used.** Threads shipped the night before, and 20 of the day's 31 messages were thread replies.
 - **Nobody opened a voice room.** Four rooms were created, all during testing. Voice was the most complex feature in the app (a WebRTC mesh, a TURN relay, push-to-talk). Our guess is that people at a theme park together just talk to each other.
-- **Two-thirds of location pings were on the map.** 916 of the 1,369 fell inside the map's area, which covers both parks, Downtown Disney, and the resort hotels. The rest were from outside the resort.
 - **Most photos didn't carry their own GPS.** Of all 89 files, 36 got their location from EXIF, 48 from the phone's position, and 5 had none. iOS strips GPS from photos picked through the browser unless the person turns it on, so the fallback mattered.
 - **Getting people installed early worked.** Most people signed in the day before, largely in the hours after the announcement went out, and nearly 4 in 5 turned on push notifications.
 
