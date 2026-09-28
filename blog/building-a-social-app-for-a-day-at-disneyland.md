@@ -121,7 +121,7 @@ On top of that, every open tab joins a PeerJS mesh with every other open tab. A 
 
 The first prompt asked for background location tracking. A web app can't do it. iOS suspends the page as soon as the screen locks, and Android Chrome stops `watchPosition` when the tab is hidden. The only real fix is a native app.
 
-So the app shares location while it's open: a ping when you've moved 40 meters or a minute has passed, never more often than every 10 seconds. Failed pings queue in `localStorage` and send when the app comes back. Each post also tries to carry a location, from the photo's EXIF GPS when it has one, or the phone's position when it doesn't. The map shows "last seen" times so stale positions are obvious.
+So the app shares location while it's open: a ping when you've moved 40 meters or a minute has passed, never more often than every 10 seconds. Sharing is on by default, so the phone asks for permission the first time the app opens, and saying no or turning off the "Share my location" switch in settings stops it. Failed pings queue in `localStorage` and send when the app comes back. Each post also tries to carry a location, from the photo's EXIF GPS when it has one, or the phone's position when it doesn't. The map shows "last seen" times so stale positions are obvious.
 
 To draw trails, the server keeps one point per person per 3 minutes, in a single query:
 
@@ -185,11 +185,10 @@ Preview and production shared one database, so the rows from the 22nd and 23rd a
 | Location pings | 1,369 from 22 people |
 | Voice rooms started | 0 |
 
-And in three-hour windows, with location pings, how many people shared their location during each window, and chat messages:
+And in three-hour windows from 6am, with location pings, how many people shared their location during each window, and chat messages:
 
 | Time | Posts | Pings | Sharing | Chat |
 |---|---|---|---|---|
-| 3am to 6am | 0 | 15 | 2 | 0 |
 | 6am to 9am | 7 | 197 | 12 | 2 |
 | 9am to noon | 20 | 421 | 18 | 15 |
 | Noon to 3pm | 19 | 316 | 17 | 9 |
@@ -200,7 +199,7 @@ And in three-hour windows, with location pings, how many people shared their loc
 - **Likes were the most-used feature by far.** Every post in the app, 76 in all, got at least one like, and one got 13.
 - **Chat was quiet, but threads got used.** Threads shipped the night before, and 20 of the day's 31 messages were thread replies.
 - **Nobody opened a voice room.** Four rooms were created, all during testing. Voice was the most complex feature in the app (a WebRTC mesh, a TURN relay, push-to-talk). Our guess is that people at a theme park together just talk to each other.
-- **Two-thirds of location pings were on the map.** 916 of the 1,369 fell inside the map's area, which covers both parks, Downtown Disney, and the resort hotels. The rest were drives in, other hotels, and trips home.
+- **Two-thirds of location pings were on the map.** 916 of the 1,369 fell inside the map's area, which covers both parks, Downtown Disney, and the resort hotels. The rest were from outside the resort.
 - **Most photos didn't carry their own GPS.** Of all 89 files, 36 got their location from EXIF, 48 from the phone's position, and 5 had none. iOS strips GPS from photos picked through the browser unless the person turns it on, so the fallback mattered.
 - **Getting people installed early worked.** 17 people signed in the day before, most of them in the hours after the announcement went out. 21 of the 27 turned on push notifications.
 
