@@ -175,33 +175,31 @@ Preview and production shared one database, so the rows from the 22nd and 23rd a
 
 | | Sep 24 |
 |---|---|
-| People signed in (all time) | 27 |
 | Posts (files) | 70 (83) |
-| People who posted | 21 |
 | Likes | 569 |
 | Comments | 74 |
 | Chat messages | 31, including 20 thread replies |
 | Chat reactions | 43 |
-| Location pings | 1,369 from 22 people |
+| Location pings | 1,369 |
 | Voice rooms started | 0 |
 
-And in three-hour windows from 6am, with location pings, how many people shared their location during each window, and chat messages:
+And in three-hour windows from 6am, with posts, location pings, and chat messages:
 
-| Time | Posts | Pings | Sharing | Chat |
-|---|---|---|---|---|
-| 6am to 9am | 7 | 197 | 12 | 2 |
-| 9am to noon | 20 | 421 | 18 | 15 |
-| Noon to 3pm | 19 | 316 | 17 | 9 |
-| 3pm to 6pm | 12 | 148 | 17 | 0 |
-| 6pm to 9pm | 9 | 180 | 18 | 5 |
-| 9pm to midnight | 3 | 92 | 12 | 0 |
+| Time | Posts | Pings | Chat |
+|---|---|---|---|
+| 6am to 9am | 7 | 197 | 2 |
+| 9am to noon | 20 | 421 | 15 |
+| Noon to 3pm | 19 | 316 | 9 |
+| 3pm to 6pm | 12 | 148 | 0 |
+| 6pm to 9pm | 9 | 180 | 5 |
+| 9pm to midnight | 3 | 92 | 0 |
 
 - **Likes were the most-used feature by far.** Every post in the app, 76 in all, got at least one like, and one got 13.
 - **Chat was quiet, but threads got used.** Threads shipped the night before, and 20 of the day's 31 messages were thread replies.
 - **Nobody opened a voice room.** Four rooms were created, all during testing. Voice was the most complex feature in the app (a WebRTC mesh, a TURN relay, push-to-talk). Our guess is that people at a theme park together just talk to each other.
 - **Two-thirds of location pings were on the map.** 916 of the 1,369 fell inside the map's area, which covers both parks, Downtown Disney, and the resort hotels. The rest were from outside the resort.
 - **Most photos didn't carry their own GPS.** Of all 89 files, 36 got their location from EXIF, 48 from the phone's position, and 5 had none. iOS strips GPS from photos picked through the browser unless the person turns it on, so the fallback mattered.
-- **Getting people installed early worked.** 17 people signed in the day before, most of them in the hours after the announcement went out. 21 of the 27 turned on push notifications.
+- **Getting people installed early worked.** Most people signed in the day before, largely in the hours after the announcement went out, and nearly 4 in 5 turned on push notifications.
 
 ### Uploaded files
 
@@ -251,7 +249,7 @@ It was this cheap for two reasons.
 
 **Media never went through Vercel.** On the 24th, Vercel sent out 243 MB in total: HTML, JavaScript, and JSON. The photos and videos, uploaded once and viewed over and over, all came from UploadThing's CDN.
 
-**Polling was cheap because phones were in pockets.** The day had 33,800 function invocations. Spread over 22 people and about 17 hours, that's 33,800 ÷ 22 ÷ 17 ≈ 90 calls per person per hour, or one every 40 seconds. The app polls every 3 to 20 seconds while it's on screen, so on average each phone had the app open a small fraction of the time. The day's invocation charge was 2 cents.
+**Polling was cheap because phones were in pockets.** The day had 33,800 function invocations. Spread over everyone sharing location and about 17 hours, that's around 90 calls per person per hour, or one every 40 seconds. The app polls every 3 to 20 seconds while it's on screen, so on average each phone had the app open a small fraction of the time. The day's invocation charge was 2 cents.
 
 The whole stack:
 
@@ -260,7 +258,7 @@ The whole stack:
 | Vercel | Pages, API, polling | $0.33 in usage, on the Pro plan I already had |
 | UploadThing | File storage and CDN | $10/month for the 100 GB plan, though the free plan covers up to 2 GB and we stayed under 1 GB |
 | Turso | Database | $0 expected: the whole database is 780 KB, and the free tier allows 5 GB and 500 million row reads a month |
-| Clerk | Google sign-in | $0: 27 users, and the free tier covers 50,000 |
+| Clerk | Google sign-in | $0: the free tier covers 50,000 users |
 | PeerJS | Finding peers for WebRTC | $0: the public signalling server |
 | Metered | TURN relay | $0 expected: the free tier is 500 MB a month, and nobody used voice |
 | Web Push | Notifications | $0 |
