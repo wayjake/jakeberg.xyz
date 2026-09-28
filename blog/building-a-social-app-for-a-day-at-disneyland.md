@@ -271,12 +271,14 @@ About $10.33 in all, and $10 of that was a storage plan the event turned out not
 ## Wins
 
 - **Testing the map from Glendale.** A fake location and a same-size map around our office meant most of the map got tested without anyone driving to Anaheim. On the day, 916 location pings landed inside the park map's area.
+- **A preview environment separate from production.** Building on Vercel's preview deployments meant I didn't have to set up DNS before anything else could work, and that got the app off the ground faster. It did cost a few hours at the finish line.
 
 ## What I learned
 
 - **Build what people do in a park.** Likes (569) beat comments (74), which beat chat (31), which beat voice (0). Voice rooms pulled in a TURN relay and much of the mesh work, and nobody used them. That time would have been better spent on resumable video uploads.
 - **Put your functions next to your database.** Vercel's default region is on the other side of the country from Oregon. One line of config made every page faster.
 - **Web apps can't track location in the background.** Foreground sharing, a queue for failed pings, and the location on each post still drew a useful map of the day.
+- **Set up production alongside the preview deployment.** I left production and its DNS for the end. I wanted to launch before I left for work on Wednesday, but DNS propagation errors held it up, so the announcement had to wait until I got home. Setting up production in parallel would have given DNS time to settle.
 
 ---
 
