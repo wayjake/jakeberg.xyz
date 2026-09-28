@@ -142,7 +142,7 @@ ORDER BY user_id, recorded_at
 
 ### A park map you can test from Glendale
 
-The park map is an illustrated image, not map tiles. To place it over real coordinates, we matched four roads around the edge (Ball Road, Katella Avenue, Walnut Street, and Harbor Boulevard) to their pixel positions. Both axes came out at about 0.86 meters per pixel, which confirmed the image is north-up and undistorted.
+The park map is an illustrated image, not map tiles. To place it over real coordinates, we matched four roads around the edge to their pixel positions. Both axes came out at about 0.86 meters per pixel, which confirmed the image is north-up and undistorted.
 
 In development, the map switches to a box the same size around our office in Glendale, so posting and location sharing can be tested on a walk around the block. A `/calibrate` page lays the park image over OpenStreetMap with an opacity slider, and lets you set a fake location to test from a desk.
 
