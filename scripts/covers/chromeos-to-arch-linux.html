@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  body { background: var(--paper); }
+
+  .copy {
+    position: absolute;
+    left: 72px; top: 64px; bottom: 96px;
+    width: 500px;
+    display: flex; flex-direction: column;
+  }
+  .copy .eyebrow { margin-top: auto; margin-bottom: 22px; }
+  .was {
+    position: relative;
+    align-self: flex-start;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--stone-500);
+  }
+  .was::after {
+    /* the strike */
+    content: "";
+    position: absolute;
+    left: -8px; right: -10px; top: 54%;
+    height: 5px;
+    background: var(--wine);
+    border-radius: 3px;
+    transform: rotate(-4deg);
+  }
+  .copy h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 112px;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-top: 10px;
+  }
+  .copy .sub {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 40px;
+    color: var(--stone-700);
+    margin-top: 10px;
+    margin-bottom: auto;
+  }
+  .shelf { position: absolute; left: 72px; right: 72px; top: 564px; }
+  .domain { position: absolute; left: 72px; top: 584px; }
+
+  .art { position: absolute; left: 590px; top: 40px; width: 560px; height: 520px; }
+
+  .stamp {
+    position: absolute;
+    left: 922px; top: 376px;
+    transform: rotate(-9deg);
+    color: var(--wine);
+    border: 4px solid var(--wine);
+    border-radius: 10px;
+    padding: 8px 18px 6px;
+    text-align: center;
+    filter: url(#ink);
+    background: rgb(255 253 249 / 0.82);
+  }
+  .stamp .big {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 44px;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .stamp .small {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    margin-top: 6px;
+  }
+  .stamp::before {
+    content: "";
+    position: absolute; inset: 4px;
+    border: 1.5px solid var(--wine);
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.5 1.62" result="holes"/>
+      <feComposite in="SourceGraphic" in2="holes" operator="in" result="speckled"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="w"/>
+      <feDisplacementMap in="speckled" in2="w" scale="3"/>
+    </filter>
+  </svg>
+
+  <div class="copy">
+    <div class="mark">JB<span>.</span></div>
+    <div class="eyebrow">Acer Spin 713 · Full ROM flash</div>
+    <div class="was">ChromeOS</div>
+    <h1>Arch Linux</h1>
+    <div class="sub">I use Arch, btw.</div>
+  </div>
+
+  <!-- Service-manual drawing: the bottom cover is off and the battery is unplugged -->
+  <svg class="art" viewBox="0 0 560 520" fill="none" stroke="#44403c" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="rotate(-5 280 230) translate(10 30)">
+      <!-- chassis -->
+      <rect x="10" y="10" width="520" height="360" rx="24" stroke-width="2.2" fill="#f7f3ec"/>
+      <rect x="24" y="24" width="492" height="332" rx="14" stroke-width="1" opacity="0.5"/>
+      <rect x="70" y="3" width="80" height="14" rx="4" stroke-width="1.5" fill="#fffdf9"/>
+      <rect x="390" y="3" width="80" height="14" rx="4" stroke-width="1.5" fill="#fffdf9"/>
+
+      <!-- motherboard -->
+      <path d="M40 40 H352 V120 H300 V176 H40 Z" stroke-width="1.6" fill="#fffdf9"/>
+      <rect x="64" y="62" width="62" height="62" rx="4" stroke-width="1.5"/>
+      <rect x="78" y="76" width="34" height="34" rx="2" stroke-width="1"/>
+      <g stroke-width="1.2">
+        <rect x="146" y="60" width="30" height="20" rx="2"/>
+        <rect x="184" y="60" width="30" height="20" rx="2"/>
+        <rect x="146" y="88" width="30" height="20" rx="2"/>
+        <rect x="184" y="88" width="30" height="20" rx="2"/>
+      </g>
+      <!-- NVMe SSD -->
+      <rect x="150" y="130" width="124" height="30" rx="3" stroke-width="1.4"/>
+      <circle cx="264" cy="145" r="5" stroke-width="1.2"/>
+      <g stroke-width="1" opacity="0.6">
+        <rect x="162" y="138" width="22" height="14"/>
+        <rect x="192" y="138" width="22" height="14"/>
+        <rect x="222" y="138" width="22" height="14"/>
+      </g>
+      <!-- heat pipe -->
+      <path d="M126 92 C 220 50, 300 60, 380 96" stroke-width="7" stroke="#d6d3d1"/>
+      <path d="M126 92 C 220 50, 300 60, 380 96" stroke-width="1.2"/>
+      <!-- fan -->
+      <circle cx="420" cy="98" r="58" stroke-width="1.8" fill="#fffdf9"/>
+      <circle cx="420" cy="98" r="14" stroke-width="1.5"/>
+      <g stroke-width="1.2">
+        <path d="M420 84 C 436 64, 448 52, 446 44"/>
+        <path d="M433 91 C 457 86, 472 88, 477 92"/>
+        <path d="M432 108 C 450 124, 456 138, 454 146"/>
+        <path d="M416 112 C 410 136, 400 148, 392 152"/>
+        <path d="M406 100 C 384 106, 370 104, 364 100"/>
+        <path d="M410 88 C 396 70, 392 58, 394 50"/>
+      </g>
+
+      <!-- battery: three cells -->
+      <rect x="60" y="214" width="420" height="132" rx="8" stroke-width="2" fill="#fffdf9"/>
+      <g stroke-width="1" opacity="0.5">
+        <path d="M84 318 H132"/><path d="M84 328 H114"/>
+      </g>
+
+      <!-- battery connector, pulled out of its socket -->
+      <rect x="312" y="168" width="40" height="12" rx="2" stroke-width="1.5" fill="#fffdf9"/>
+      <path d="M318 180 V172 M326 180 V172 M334 180 V172 M342 180 V172" stroke-width="1" opacity="0.6"/>
+      <g stroke="#8b2c3a">
+        <rect x="316" y="192" width="32" height="12" rx="2" stroke-width="1.8" fill="#f4e4e4"/>
+        <path d="M324 204 C 324 208, 326 212, 326 214 M332 204 V214 M340 204 C 340 208, 338 212, 338 214" stroke-width="1.6"/>
+        <path d="M302 187 L308 185 M356 187 L362 185" stroke-width="1.4"/>
+      </g>
+
+      <!-- callout -->
+      <g stroke="#8b2c3a" stroke-width="1.3">
+        <path d="M350 199 L 372 199 L 372 244"/>
+        <circle cx="350" cy="199" r="2.5" fill="#8b2c3a"/>
+      </g>
+      <g fill="#8b2c3a" stroke="none" font-family="Inter" font-weight="600" font-size="12" letter-spacing="1.9">
+        <text x="236" y="262">BATTERY UNPLUGGED</text>
+        <text x="236" y="280">= WRITE PROTECT OFF</text>
+      </g>
+
+      <!-- screw bosses around the rim -->
+      <g stroke-width="1.2">
+        <circle cx="30" cy="30" r="5"/><circle cx="510" cy="30" r="5"/>
+        <circle cx="30" cy="350" r="5"/><circle cx="510" cy="350" r="5"/>
+        <circle cx="270" cy="30" r="5"/><circle cx="270" cy="360" r="5"/>
+        <circle cx="30" cy="190" r="5"/><circle cx="510" cy="190" r="5"/>
+      </g>
+    </g>
+
+    <!-- loose screws -->
+    <defs>
+      <g id="screw" stroke-width="1.4">
+        <circle r="10" fill="#e7e2d9" stroke="none" transform="translate(1.5 2)"/>
+        <circle r="10" fill="#fffdf9"/>
+        <circle r="6.5" stroke-width="0.8" opacity="0.5"/>
+        <path d="M-5 0 H5 M0 -5 V5" stroke-width="1.8"/>
+      </g>
+    </defs>
+    <use href="#screw" transform="translate(34 462)"/>
+    <use href="#screw" transform="translate(70 490) rotate(22)"/>
+    <use href="#screw" transform="translate(116 470) rotate(40)"/>
+    <use href="#screw" transform="translate(150 500) rotate(8)"/>
+    <use href="#screw" transform="translate(196 478) rotate(30)"/>
+    <!-- screwdriver -->
+    <g transform="translate(240 508) rotate(-9)">
+      <path d="M0 0 H150" stroke-width="3.2"/>
+      <path d="M0 -2 L-10 0 L0 2" stroke-width="1.4" fill="#44403c"/>
+      <rect x="150" y="-13" width="104" height="26" rx="12" stroke-width="1.8" fill="#fffdf9"/>
+      <path d="M166 -6 H240 M166 0 H240 M166 6 H240" stroke-width="1" opacity="0.55"/>
+      <rect x="146" y="-7" width="8" height="14" rx="2" stroke-width="1.4" fill="#fffdf9"/>
+    </g>
+  </svg>
+
+
+  <div class="stamp">
+    <div class="big">I AGREE</div>
+    <div class="small">TYPED IN ALL CAPS</div>
+  </div>
+
+  <div class="shelf"><div class="rule"></div></div>
+  <div class="domain">jakeberg.xyz/blog</div>
+</body>
+</html>

@@ -92,32 +92,47 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
                     to={`/blog/${post.slug}`}
                     className="group rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-wine"
                   >
-                    <article className="flex h-full flex-col rounded-xl bg-paper p-8 ring-1 ring-stone-900/10 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_24px_48px_-28px_rgb(68_64_60/0.4)]">
-                      {/* Date */}
-                      <time
-                        dateTime={post.date}
-                        className="mb-3 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase"
-                      >
-                        {formattedDate}
-                      </time>
+                    <article className="flex h-full flex-col overflow-hidden rounded-xl bg-paper ring-1 ring-stone-900/10 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_24px_48px_-28px_rgb(68_64_60/0.4)]">
+                      {/* Cover, which is also the og:image */}
+                      {post.image && (
+                        <img
+                          src={post.image}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          width={1200}
+                          height={630}
+                          className="aspect-[1200/630] w-full border-b border-stone-900/10 object-cover"
+                        />
+                      )}
 
-                      {/* Title */}
-                      <h2 className="mb-3 font-display text-[1.75rem] leading-tight font-semibold text-stone-900 transition-colors group-hover:text-wine">
-                        {post.title}
-                      </h2>
+                      <div className="flex flex-grow flex-col p-8">
+                        {/* Date */}
+                        <time
+                          dateTime={post.date}
+                          className="mb-3 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase"
+                        >
+                          {formattedDate}
+                        </time>
 
-                      {/* Description */}
-                      {/* The wrapper takes the spare height so the clamp stays at three lines */}
-                      <div className="mb-6 flex-grow">
-                        <p className="line-clamp-3 text-stone-600">
-                          {post.description}
-                        </p>
-                      </div>
+                        {/* Title */}
+                        <h2 className="mb-3 font-display text-[1.75rem] leading-tight font-semibold text-stone-900 transition-colors group-hover:text-wine">
+                          {post.title}
+                        </h2>
 
-                      {/* Read more link */}
-                      <div className="flex items-center gap-1 text-sm font-medium text-stone-900 transition-all group-hover:gap-2 group-hover:text-wine">
-                        Read article
-                        <span aria-hidden="true">→</span>
+                        {/* Description */}
+                        {/* The wrapper takes the spare height so the clamp stays at three lines */}
+                        <div className="mb-6 flex-grow">
+                          <p className="line-clamp-3 text-stone-600">
+                            {post.description}
+                          </p>
+                        </div>
+
+                        {/* Read more link */}
+                        <div className="flex items-center gap-1 text-sm font-medium text-stone-900 transition-all group-hover:gap-2 group-hover:text-wine">
+                          Read article
+                          <span aria-hidden="true">→</span>
+                        </div>
                       </div>
                     </article>
                   </Link>

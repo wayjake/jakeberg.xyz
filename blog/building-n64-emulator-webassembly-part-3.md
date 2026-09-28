@@ -1,9 +1,9 @@
 ---
-date: 2025-10-26
+date: 2025-11-09
 author: Jake Berg
-title: "Building an N64 Emulator in the Browser, Part 3: Audio, Input, and What We Didn't Solve"
+title: "Audio, Input, and What We Didn't Solve - Building an N64 Emulator in the Browser, Part 3"
 description: "Letting audio drive the emulator kept sound and picture in sync, apart from a few skips we never fixed. Keyboard input is still a mystery, and here's everything we tried."
-image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGxmMHJ0dnJ0dXdyMWV6bG4xM3p0Mmw3YjRib3hsNXFpYjU5ejh6NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8WxV7tmTyn6jb8Dwer/giphy.gif"
+image: "/blog/covers/building-n64-emulator-webassembly-part-3.jpg"
 ---
 
 *Part 3 of 3. Previous: [Part 1: When the Compiler Said No](/blog/building-n64-emulator-webassembly) · [Part 2: Three Files and a Title Screen](/blog/building-n64-emulator-webassembly-part-2)*

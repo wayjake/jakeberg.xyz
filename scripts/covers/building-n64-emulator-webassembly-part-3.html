@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="n64.css">
+<style>
+  .copy h1 { font-size: 46px; }
+  .wave { position: absolute; left: 40px; top: 96px; width: 600px; height: 330px; }
+  .tag {
+    position: absolute;
+    font: 600 11px var(--sans);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #e27a8a;
+  }
+  .label {
+    position: absolute; left: 40px; top: 58px;
+    font: 500 12px var(--mono);
+    letter-spacing: 0.06em;
+    color: #7b78d8;
+  }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="mark">JB<span>.</span></div>
+    <div class="eyebrow">N64 in the browser</div>
+    <div class="part"><span class="word">Part</span><span class="num">3</span><span class="of">OF 3</span></div>
+    <h1>Audio, input, and what we didn't solve</h1>
+  </div>
+
+  <div class="screen">
+    <div class="label">audio out · 44.1kHz</div>
+    <svg class="wave" viewBox="0 0 600 330"></svg>
+    <!-- the emulator's real stats bar -->
+    <div class="crop" style="--x:96; --y:1322; --s:0.4104; left:10px; top:486px; width:660px; height:51px;"></div>
+  </div>
+
+  <div class="shelf"><div class="rule"></div></div>
+  <div class="domain">jakeberg.xyz/blog</div>
+
+  <script>
+    // Deterministic waveform bars with two dropouts: the skips we never fixed
+    const svg = document.querySelector('.wave');
+    const NS = 'http://www.w3.org/2000/svg';
+    const bars = 100, w = 600 / bars, mid = 165;
+    const gaps = [[31, 35], [71, 74]];
+    let seed = 11;
+    const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < bars; i++) {
+      const inGap = gaps.some(([a, b]) => i >= a && i <= b);
+      const env = 0.35 + 0.65 * Math.abs(Math.sin(i / 9.5)) * (0.55 + 0.45 * Math.sin(i / 23 + 1));
+      const h = inGap ? 2 : Math.max(6, (0.35 + 0.65 * rand()) * env * 150);
+      const r = document.createElementNS(NS, 'rect');
+      r.setAttribute('x', i * w + 1);
+      r.setAttribute('width', w - 2.2);
+      r.setAttribute('y', mid - h);
+      r.setAttribute('height', h * 2);
+      r.setAttribute('rx', 1.5);
+      r.setAttribute('fill', inGap ? '#e27a8a' : '#6f6bd0');
+      r.setAttribute('opacity', inGap ? 0.9 : 0.55 + 0.45 * (h / 150));
+      svg.appendChild(r);
+    }
+    for (const [a, b] of gaps) {
+      const x0 = a * w, x1 = (b + 1) * w;
+      const g = document.createElementNS(NS, 'path');
+      g.setAttribute('d', `M${x0} ${mid - 34} V${mid - 44} H${x1} V${mid - 34} M${x0} ${mid + 34} V${mid + 44} H${x1} V${mid + 34}`);
+      g.setAttribute('stroke', '#e27a8a');
+      g.setAttribute('stroke-width', 1.5);
+      g.setAttribute('fill', 'none');
+      svg.appendChild(g);
+      const t = document.createElement('div');
+      t.className = 'tag';
+      t.textContent = 'skip';
+      t.style.left = (40 + (x0 + x1) / 2 - 16) + 'px';
+      t.style.top = (96 + mid + 52) + 'px';
+      document.querySelector('.screen').appendChild(t);
+    }
+  </script>
+</body>
+</html>

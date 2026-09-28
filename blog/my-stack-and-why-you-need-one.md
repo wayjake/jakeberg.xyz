@@ -3,6 +3,7 @@ date: 2025-08-22
 author: Jake Berg
 title: "My Stack and Why You Need One"
 description: "Discover how a modern, serverless-first tech stack with React Router V7, Vercel, UploadThing, Turso, and Drizzle ORM can transform your development workflow and enable effortless scaling."
+image: "/blog/covers/my-stack-and-why-you-need-one.jpg"
 ---
 
 # My Stack and Why You Need One

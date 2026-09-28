@@ -1,9 +1,9 @@
 ---
-date: 2025-10-26
+date: 2025-11-02
 author: Jake Berg
-title: "Building an N64 Emulator in the Browser, Part 2: Three Files and a Title Screen"
+title: "Three Files and a Title Screen - Building an N64 Emulator in the Browser, Part 2"
 description: "A pre-compiled core should have made the rest easy. First we had to find a missing third file, get the startup order exactly right, and learn the ROM's secret name."
-image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGxmMHJ0dnJ0dXdyMWV6bG4xM3p0Mmw3YjRib3hsNXFpYjU5ejh6NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8WxV7tmTyn6jb8Dwer/giphy.gif"
+image: "/blog/covers/building-n64-emulator-webassembly-part-2.jpg"
 ---
 
 *Part 2 of 3. Previous: [Part 1: When the Compiler Said No](/blog/building-n64-emulator-webassembly) · Next: [Part 3: Audio, Input, and What We Didn't Solve](/blog/building-n64-emulator-webassembly-part-3)*

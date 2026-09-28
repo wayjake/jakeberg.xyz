@@ -1,0 +1,60 @@
+/* Shared frame for the N64 series: paper text panel on the left, the emulator screenshot on the right */
+body { background: var(--paper); }
+
+.copy {
+  position: absolute;
+  left: 64px; top: 64px; bottom: 96px;
+  width: 400px;
+  display: flex; flex-direction: column;
+}
+.copy .eyebrow { margin-top: auto; margin-bottom: 4px; }
+.part {
+  display: flex; align-items: baseline; gap: 16px;
+  font-family: var(--display);
+  line-height: 1;
+}
+.part .word {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 58px;
+  color: var(--stone-600);
+}
+.part .num {
+  font-weight: 500;
+  font-size: 196px;
+  line-height: 0.9;
+  color: var(--wine);
+}
+.part .of {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  color: var(--stone-500);
+  margin-left: 2px;
+}
+.copy h1 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 1.02;
+  text-wrap: balance;
+  margin-top: 14px;
+  margin-bottom: auto;
+}
+.shelf { position: absolute; left: 64px; width: 400px; top: 564px; }
+.domain { position: absolute; left: 64px; top: 584px; }
+
+.screen {
+  position: absolute;
+  left: 520px; top: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+/* A crop of assets/n64.png (1812x1486). Set --x/--y/--w for the source rect; it is scaled to the element's width. */
+.crop {
+  position: absolute;
+  background: url(assets/n64.png) no-repeat;
+  background-size: calc(1812px * var(--s)) auto;
+  background-position: calc(var(--x) * var(--s) * -1px) calc(var(--y) * var(--s) * -1px);
+}

@@ -1,6 +1,6 @@
 import type { Route } from "./+types/blog.$slug";
 import { Link } from "react-router";
-import { getPostBySlug } from "../utils/markdown.server";
+import { getAllPosts, getPostBySlug } from "../utils/markdown.server";
 import { useEffect } from "react";
 
 export function meta({ data }: Route.MetaArgs) {
@@ -32,11 +32,14 @@ export function meta({ data }: Route.MetaArgs) {
     { name: "robots", content: "index, follow" },
   ];
 
-  // Add image tags if image is provided
+  // Add image tags if image is provided. Crawlers need an absolute URL, so site paths get the origin.
   if (post.metadata.image) {
+    const image = post.metadata.image.startsWith("/")
+      ? `https://jakeberg.xyz${post.metadata.image}`
+      : post.metadata.image;
     metaTags.push(
-      { property: "og:image", content: post.metadata.image },
-      { name: "twitter:image", content: post.metadata.image }
+      { property: "og:image", content: image },
+      { name: "twitter:image", content: image }
     );
   }
 
@@ -56,11 +59,47 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return { post };
+  // Neighbors in the blog index's order (newest first, undated posts dropped)
+  const posts = (await getAllPosts()).filter((p) => !isNaN(new Date(p.date).getTime()));
+  const index = posts.findIndex((p) => p.slug === slug);
+  const newer = index > 0 ? posts[index - 1] : null;
+  const older = index >= 0 && index < posts.length - 1 ? posts[index + 1] : null;
+
+  return {
+    post,
+    newer: newer && { slug: newer.slug, title: newer.title },
+    older: older && { slug: older.slug, title: older.title },
+  };
+}
+
+function AdjacentPostLink({
+  post,
+  label,
+  align,
+}: {
+  post: { slug: string; title: string };
+  label: string;
+  align: "left" | "right";
+}) {
+  return (
+    <Link
+      to={`/blog/${post.slug}`}
+      className={`group flex max-w-full min-w-0 flex-col gap-1 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-wine sm:max-w-md ${
+        align === "right" ? "items-end text-right" : "items-start"
+      }`}
+    >
+      <span className="text-[0.6875rem] font-medium tracking-[0.14em] text-stone-500 uppercase transition-colors group-hover:text-wine">
+        {label}
+      </span>
+      <span className="max-w-full truncate font-display text-xl font-semibold text-stone-900 transition-colors group-hover:text-wine">
+        {post.title}
+      </span>
+    </Link>
+  );
 }
 
 export default function BlogPost({ loaderData }: Route.ComponentProps) {
-  const { post } = loaderData;
+  const { post, newer, older } = loaderData;
 
   const postDate = new Date(post.metadata.date);
   const formattedDate = postDate.toLocaleDateString("en-US", {
@@ -132,6 +171,12 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
 
       {/* Article */}
       <article className="flex-grow px-4 py-12 sm:px-6">
+        {newer && (
+          <nav aria-label="Newer post" className="mx-auto mb-6 flex max-w-4xl">
+            <AdjacentPostLink post={newer} label="← Newer post" align="left" />
+          </nav>
+        )}
+
         <div className="mx-auto max-w-4xl bg-paper p-7 shadow-[0_1px_2px_rgb(68_64_60/0.06),0_24px_48px_-24px_rgb(68_64_60/0.28)] ring-1 ring-stone-900/5 md:p-14">
           {/* Article Header */}
           <header className="mb-12">
@@ -195,6 +240,12 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             </Link>
           </div>
         </div>
+
+        {older && (
+          <nav aria-label="Previous post" className="mx-auto mt-6 flex max-w-4xl justify-end">
+            <AdjacentPostLink post={older} label="Previous post →" align="right" />
+          </nav>
+        )}
       </article>
 
       {/* Footer */}

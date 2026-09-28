@@ -1,9 +1,9 @@
 ---
 date: 2025-10-26
 author: Jake Berg
-title: "Building an N64 Emulator in the Browser, Part 1: When the Compiler Said No"
+title: "When the Compiler Said No - Building an N64 Emulator in the Browser, Part 1"
 description: "Or: How We Learned to Stop Worrying and Love Pre-Compiled Cores. We set out to compile an N64 emulator to WebAssembly. The compiler crashed, and the smart move was to stop fighting it."
-image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGxmMHJ0dnJ0dXdyMWV6bG4xM3p0Mmw3YjRib3hsNXFpYjU5ejh6NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8WxV7tmTyn6jb8Dwer/giphy.gif"
+image: "/blog/covers/building-n64-emulator-webassembly.jpg"
 ---
 
 *Part 1 of 3. Next: [Part 2: Three Files and a Title Screen](/blog/building-n64-emulator-webassembly-part-2) · [Part 3: Audio, Input, and What We Didn't Solve](/blog/building-n64-emulator-webassembly-part-3)*

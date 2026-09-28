@@ -3,7 +3,7 @@ date: 2025-07-15
 author: Jake Berg
 title: "From ChromeOS to Arch Linux: Liberating the Acer Spin 713"
 description: "A detailed guide on converting an Acer Spin 713 Chromebook from ChromeOS to native Arch Linux by flashing MrChromebox's UEFI firmware, overcoming hardware write protection, and navigating installation challenges."
-image: "/blog/omarchy-setup.jpeg"
+image: "/blog/covers/chromeos-to-arch-linux.jpg"
 ---
 
 # From ChromeOS to Arch Linux: Liberating the Acer Spin 713
