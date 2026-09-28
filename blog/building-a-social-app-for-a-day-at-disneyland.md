@@ -144,7 +144,7 @@ ORDER BY user_id, recorded_at
 
 The park map is an illustrated image, not map tiles. To place it over real coordinates, we matched four roads around the edge to their pixel positions. Both axes came out at about 0.86 meters per pixel, which confirmed the image is north-up and undistorted.
 
-In development, the map switches to a box the same size around our office in Glendale, so posting and location sharing can be tested on a walk around the block. A `/calibrate` page lays the park image over OpenStreetMap with an opacity slider, and lets you set a fake location to test from a desk.
+In development, the map switches to a box the same size around our office in Glendale, so posting and location sharing can be tested on a walk around the block. A calibration page lays the park image over OpenStreetMap with an opacity slider, and lets you set a fake location to test from a desk.
 
 ## The gotchas that cost real time
 
@@ -183,16 +183,16 @@ Preview and production shared one database, so the rows from the 22nd and 23rd a
 | Location pings | 1,369 |
 | Voice rooms started | 0 |
 
-And in three-hour windows from 6am, with posts, location pings, and chat messages:
+And in three-hour windows, with posts and chat messages:
 
-| Time | Posts | Pings | Chat |
-|---|---|---|---|
-| 6am to 9am | 7 | 197 | 2 |
-| 9am to noon | 20 | 421 | 15 |
-| Noon to 3pm | 19 | 316 | 9 |
-| 3pm to 6pm | 12 | 148 | 0 |
-| 6pm to 9pm | 9 | 180 | 5 |
-| 9pm to midnight | 3 | 92 | 0 |
+| Time | Posts | Chat |
+|---|---|---|
+| 6am to 9am | 7 | 2 |
+| 9am to noon | 20 | 15 |
+| Noon to 3pm | 19 | 9 |
+| 3pm to 6pm | 12 | 0 |
+| 6pm to 9pm | 9 | 5 |
+| 9pm to midnight | 3 | 0 |
 
 - **Likes were the most-used feature by far.** Every post in the app, 76 in all, got at least one like, and one got 13.
 - **Chat was quiet, but threads got used.** Threads shipped the night before, and 20 of the day's 31 messages were thread replies.
