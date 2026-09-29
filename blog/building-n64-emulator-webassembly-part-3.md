@@ -6,7 +6,7 @@ description: "Letting audio drive the emulator kept sound and picture in sync, a
 image: "/blog/covers/building-n64-emulator-webassembly-part-3.jpg"
 ---
 
-*Part 3 of 3. Previous: [Part 1: When the Compiler Said No](/blog/building-n64-emulator-webassembly) · [Part 2: Three Files and a Title Screen](/blog/building-n64-emulator-webassembly-part-2)*
+*Part 3 of 4. Previous: [Part 1: When the Compiler Said No](/blog/building-n64-emulator-webassembly) · [Part 2: Three Files and a Title Screen](/blog/building-n64-emulator-webassembly-part-2) · Next: [Part 4: The Crash We Couldn't Reproduce and the Keys We Never Mapped](/blog/building-n64-emulator-webassembly-part-4)*
 
 By the end of [Part 2](/blog/building-n64-emulator-webassembly-part-2), *Off Road Challenge* was rendering in the browser. This part covers audio, which we mostly solved, and keyboard input, which we didn't.
 

@@ -6,7 +6,7 @@ description: "A pre-compiled core should have made the rest easy. First we had t
 image: "/blog/covers/building-n64-emulator-webassembly-part-2.jpg"
 ---
 
-*Part 2 of 3. Previous: [Part 1: When the Compiler Said No](/blog/building-n64-emulator-webassembly) · Next: [Part 3: Audio, Input, and What We Didn't Solve](/blog/building-n64-emulator-webassembly-part-3)*
+*Part 2 of 4. Previous: [Part 1: When the Compiler Said No](/blog/building-n64-emulator-webassembly) · Next: [Part 3: Audio, Input, and What We Didn't Solve](/blog/building-n64-emulator-webassembly-part-3) · [Part 4: The Crash We Couldn't Reproduce and the Keys We Never Mapped](/blog/building-n64-emulator-webassembly-part-4)*
 
 In [Part 1](/blog/building-n64-emulator-webassembly), the compiler refused to build our emulator, so we switched to N64Wasm's pre-compiled ParaLLEl N64 core. That should have made the rest easy: copy the files, load them, play. This part covers what actually stood between us and the first frame.
 

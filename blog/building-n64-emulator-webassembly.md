@@ -6,7 +6,7 @@ description: "Or: How We Learned to Stop Worrying and Love Pre-Compiled Cores. W
 image: "/blog/covers/building-n64-emulator-webassembly.jpg"
 ---
 
-*Part 1 of 3. Next: [Part 2: Three Files and a Title Screen](/blog/building-n64-emulator-webassembly-part-2) · [Part 3: Audio, Input, and What We Didn't Solve](/blog/building-n64-emulator-webassembly-part-3)*
+*Part 1 of 4. Next: [Part 2: Three Files and a Title Screen](/blog/building-n64-emulator-webassembly-part-2) · [Part 3: Audio, Input, and What We Didn't Solve](/blog/building-n64-emulator-webassembly-part-3) · [Part 4: The Crash We Couldn't Reproduce and the Keys We Never Mapped](/blog/building-n64-emulator-webassembly-part-4)*
 
 We set out to run *Off Road Challenge* in a web browser. Not through a streaming service or a cloud gaming platform, but by running the N64 emulator *inside* the browser with WebAssembly.
 

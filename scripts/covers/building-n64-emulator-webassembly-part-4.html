@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="n64.css">
+<style>
+  .copy h1 { font-size: 42px; }
+  .race {
+    position: absolute; left: 0; top: 0;
+    width: 680px; height: 510px;
+    background: url(assets/n64-part-4-race.png) no-repeat 0 0 / 100% 100%;
+    image-rendering: auto;
+  }
+  .diff {
+    position: absolute; left: 40px; right: 40px; top: 510px; bottom: 0;
+    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+    font: 500 22px/1.2 var(--mono);
+  }
+  .diff .file {
+    font: 500 12px var(--mono);
+    letter-spacing: 0.06em;
+    color: #7b78d8;
+    margin-bottom: 4px;
+  }
+  .diff .del { color: #e27a8a; }
+  .diff .add { color: #4ade80; }
+  .diff .code { display: inline-block; width: 128px; }
+  .diff .note { color: #78716c; font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="mark">JB<span>.</span></div>
+    <div class="eyebrow">N64 in the browser</div>
+    <div class="part"><span class="word">Part</span><span class="num">4</span><span class="of">OF 4</span></div>
+    <h1>The crash we couldn't reproduce and the keys we never mapped</h1>
+  </div>
+
+  <!-- The first keyboard-driven race, and the one-line change that made it possible -->
+  <div class="screen">
+    <div class="race"></div>
+    <div class="diff">
+      <div class="file">config.txt · Start button</div>
+      <div class="del"><span class="code">- 40</span><span class="note">an SDL scancode, which the core reads as no key</span></div>
+      <div class="add"><span class="code">+ Enter</span><span class="note">the key name the core expects</span></div>
+    </div>
+  </div>
+
+  <div class="shelf"><div class="rule"></div></div>
+  <div class="domain">jakeberg.xyz/blog</div>
+</body>
+</html>
