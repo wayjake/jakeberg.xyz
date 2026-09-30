@@ -1,6 +1,7 @@
 import type { Route } from "./+types/blog._index";
 import { Link } from "react-router";
 import { getAllPosts } from "../utils/markdown.server";
+import { PostCard, hasValidDate } from "../components/PostCard";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -72,72 +73,9 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
             </div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => {
-                const postDate = new Date(post.date);
-                const formattedDate = postDate.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                });
-
-                // Check if date is valid
-                const isValidDate = !isNaN(postDate.getTime());
-
-                // Skip posts with invalid dates
-                if (!isValidDate) return null;
-
-                return (
-                  <Link
-                    key={post.slug}
-                    to={`/blog/${post.slug}`}
-                    className="group rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-wine"
-                  >
-                    <article className="flex h-full flex-col overflow-hidden rounded-xl bg-paper ring-1 ring-stone-900/10 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_24px_48px_-28px_rgb(68_64_60/0.4)]">
-                      {/* Cover, which is also the og:image */}
-                      {post.image && (
-                        <img
-                          src={post.image}
-                          alt=""
-                          loading="lazy"
-                          decoding="async"
-                          width={1200}
-                          height={630}
-                          className="aspect-[1200/630] w-full border-b border-stone-900/10 object-cover"
-                        />
-                      )}
-
-                      <div className="flex flex-grow flex-col p-8">
-                        {/* Date */}
-                        <time
-                          dateTime={post.date}
-                          className="mb-3 text-[0.6875rem] font-medium tracking-[0.14em] text-wine uppercase"
-                        >
-                          {formattedDate}
-                        </time>
-
-                        {/* Title */}
-                        <h2 className="mb-3 font-display text-[1.75rem] leading-tight font-semibold text-stone-900 transition-colors group-hover:text-wine">
-                          {post.title}
-                        </h2>
-
-                        {/* Description */}
-                        {/* The wrapper takes the spare height so the clamp stays at three lines */}
-                        <div className="mb-6 flex-grow">
-                          <p className="line-clamp-3 text-stone-600">
-                            {post.description}
-                          </p>
-                        </div>
-
-                        {/* Read more link */}
-                        <div className="flex items-center gap-1 text-sm font-medium text-stone-900 transition-all group-hover:gap-2 group-hover:text-wine">
-                          Read article
-                          <span aria-hidden="true">→</span>
-                        </div>
-                      </div>
-                    </article>
-                  </Link>
-                );
-              })}
+              {posts.filter(hasValidDate).map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
             </div>
           )}
         </div>

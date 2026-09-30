@@ -3,6 +3,8 @@ import { useState, useEffect, useRef, useCallback, type ReactNode } from "react"
 import { cn } from "../utils";
 import { Form, useNavigation, useActionData, useLoaderData } from "react-router";
 import crypto from "crypto";
+import { getAllPosts } from "../utils/markdown.server";
+import { PostCard, hasValidDate } from "../components/PostCard";
 
 // Simple signing for captcha tokens (prevents tampering)
 const CAPTCHA_SECRET = process.env.CAPTCHA_SECRET || "fallback-secret-change-me";
@@ -98,7 +100,9 @@ export function meta({ }: Route.MetaArgs) {
 
 export async function loader() {
   const { question, token } = generateCaptcha();
-  return { captchaQuestion: question, captchaToken: token };
+  // The latest three; the page shows as many as fit (see "From the blog")
+  const posts = (await getAllPosts()).filter(hasValidDate).slice(0, 3);
+  return { captchaQuestion: question, captchaToken: token, posts };
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -238,11 +242,12 @@ const capabilities = [
   "Growth",
 ];
 
+// On phones the navbar only has room for the links marked `mobile`
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Resume", href: "/resume" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "/blog", mobile: true },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -385,9 +390,13 @@ export default function Home() {
           <a href="#" className="font-display text-2xl leading-none font-semibold text-stone-900 transition-colors hover:text-wine">
             JB<span className="text-wine">.</span>
           </a>
-          <div className="hidden items-center gap-6 text-sm md:flex">
+          <div className="flex items-center gap-6 text-sm">
             {navLinks.map((link) => (
-              <a key={link.label} href={link.href} className="text-stone-500 transition-colors hover:text-stone-900">
+              <a
+                key={link.label}
+                href={link.href}
+                className={cn("text-stone-500 transition-colors hover:text-stone-900", !link.mobile && "hidden md:inline")}
+              >
                 {link.label}
               </a>
             ))}
@@ -517,6 +526,33 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 📝 From the blog: one post on phones, two on tablets, three on desktop */}
+      {loaderData.posts.length > 0 && (
+        <section id="blog" className="px-6 pb-24">
+          <div className="mx-auto max-w-6xl">
+            <SectionHeading>From the blog</SectionHeading>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {loaderData.posts.map((post, i) => (
+                <PostCard
+                  key={post.slug}
+                  post={post}
+                  heading="h3"
+                  className={cn(i === 1 && "hidden md:block", i === 2 && "hidden lg:block")}
+                />
+              ))}
+            </div>
+            <div className="mt-10 flex justify-center">
+              <a
+                href="/blog"
+                className="rounded-full bg-paper px-8 py-4 font-medium text-stone-900 ring-1 ring-stone-300 transition duration-200 hover:-translate-y-0.5 hover:ring-stone-400 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
+              >
+                All posts
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 📬 Contact Section - let's connect */}
       <section id="contact" className="bg-linen px-6 py-24">
