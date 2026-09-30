@@ -49,47 +49,28 @@ A sprint is a stretch of activity in Claude Code with no gap longer than 45 minu
 ```timeline
 # Sunday, September 27
 ## 11:34am – 2:12pm
-* 11:34am | Connect Claude Code to Blender through Blender Lab's MCP server
-* 11:50am | A second session gets `PROMPT.md`: "work on the 3d scene until complete"
-* 11:59am | Greybox done (31 objects), screenshots taken, and a stop for review
-* 12:16pm | Modular structure: 104 objects from 25 modules, about 10k triangles
-* 12:41pm | Lightmap UVs on 188 meshes, one overlap-free atlas per room
-* 1:14pm | All seven steps done: about 40k triangles against a 150k budget, and one GLB per room
-* 1:22pm | "Is there color in the scene? I just see grey." The viewport was in Solid shading.
-* 1:29pm | A React Router app next to `blender/`, then a placeholder React Three Fiber scene
-* 1:42pm | First lightmap bake: 12 maps in about 10 minutes, in a headless Blender
-* 1:58pm | Re-baked with a brightness scale per map, and checked in a plain three.js page
-* 2:12pm | `sync-ship`, a Vite plugin that copies the export into the app
+* 11:34am | Claude Code connected to Blender through Blender Lab's MCP server
+* 11:59am | `PROMPT.md` in, greybox out: 31 objects, then a stop for review
+* 1:14pm | The finished ship: about 40k triangles, lightmap UVs, and one GLB per room
+* 2:12pm | 12 lightmaps baked headless, and a Vite plugin that copies them into a new React Three Fiber app
 ## 3:04pm – 4:28pm
-* 3:10pm | The rooms load in React Three Fiber with their lightmaps, at `/fly`
-* 4:28pm | A scene picker, and the Myst-style demo with all five beats
-
+* 4:28pm | The rooms lit in the browser at `/fly`, and the Myst-style demo
 # Monday, September 28
 ## 9:31am – 11:43am
-* 9:44am | A performance readout on the HUD, after a report that it runs badly on a Windows gaming PC
-* 10:31am | Profiling: React Three Fiber's loop costs 0.03 ms a frame; the stalls are three.js building shaders
-10:56am | **First commit.** The ship app, the performance readout, and the Blender source
-* 11:06am | Warm up shaders and textures at load, and keep the pulse lights mounted
-11:42am | The ship-plan logo and favicons, pushed to `main` and `preview`
-
+* 10:31am | Profiling a slow Windows PC: the stalls are three.js building shaders, not React Three Fiber
+10:56am | **First commit.** The ship app, a performance readout, and the Blender source
+11:42am | The ship-plan logo and favicons
 # Tuesday, September 29
 ## 9:16am – 9:45am
-* 9:28am | Emergency lighting re-baked brighter, round one: beacons from 60 W to 240 W
-* 9:45am | Warm-up measured: stalls during play drop from about 390 ms to 100 ms
+* 9:45am | Shader warm-up at load: stalls during play drop from about 390 ms to 100 ms
 ## 10:57am – 11:47am
-* 11:10am | Round two: the ceiling strips light the emergency state too, in red
+* 11:10am | Emergency lighting re-baked brighter, on the second try
 ## 12:36pm – 3:38pm
-* 1:32pm | The caretaker: a rigged character with 66 bones, built from a script
-* 2:03pm | `/walk`: the demo on foot, with positional sound and the ship's steward
-* 2:32pm | `/construct`: the caretaker walks, jumps, talks, strafes, and crouches
-3:18pm | Walk mode, the caretaker, and the construct, pushed to `main`
-* 3:19pm | Doors open from the panel beside them, not by clicking the door
+3:18pm | The caretaker character, the first-person walk, and the construct, pushed to `main`
 3:33pm | Door panel buttons, on `preview`
-
 # Wednesday, September 30
 ## 8:50am – 8:59am
-* 8:57am | A jammed cryo door you pry open with the caretaker's own arm
-* 8:59am | Direct links 404 on Vercel; add a `vercel.json` rewrite
+* 8:57am | A jammed cryo door you pry open by hand, and a fix for direct links on Vercel
 ## 9:51am – 9:52am
 9:52am | The jammed door and `vercel.json`, on `preview`
 ```
