@@ -3,6 +3,7 @@ date: 2026-10-21
 author: Jake Berg
 title: "On the Keeping of Gates: App Stores and the Price of Permission"
 description: "A complaint about the two companies that decide what runs on our phones, what their gates cost the people who build software, and a proposal: free listing, a short application, and progressive web apps admitted as the native apps they already are."
+image: "/blog/covers/on-the-keeping-of-gates.jpg"
 ---
 
 I am at present building two applications, and I would prefer that they be native. I have been in this trade long enough to know the difference between a program that lives on a machine and one that only visits it. The code is not the difficulty. The code comes in an afternoon, or a week, and it does what I ask of it. The difficulty is a gate I did not build, kept by two companies I have never met, who require that I explain myself before they will let me hand a small, useful thing to my neighbor.

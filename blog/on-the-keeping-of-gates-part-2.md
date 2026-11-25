@@ -3,6 +3,7 @@ date: 2026-11-25
 author: Jake Berg
 title: "On the Keeping of Gates, Part 2: The Wall Around the Phone"
 description: "The app store is only the gate. The wall around it is built from an open source system emptied from the inside, carriers that hold the phone until it's paid off, glued batteries and paired parts, and bootloaders the owner may not open. What a phone ought to be instead."
+image: "/blog/covers/on-the-keeping-of-gates-part-2.jpg"
 ---
 
 In [the first part](/blog/on-the-keeping-of-gates) I complained about the gate: the fees, the certificates, the testers, the pictures, and the share of every sale. A gate is only useful to its keeper if there is a wall on either side of it. So in this part I walked the length of the wall, to see what it is made of and who laid each stone.
