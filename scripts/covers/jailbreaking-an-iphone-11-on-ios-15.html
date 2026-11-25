@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  body { background: var(--linen); }
+
+  .copy {
+    position: absolute;
+    left: 72px; top: 64px; bottom: 96px;
+    width: 450px;
+    display: flex; flex-direction: column;
+  }
+  .copy .eyebrow { margin-top: auto; margin-bottom: 18px; }
+  .copy h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 62px;
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+  .copy .sub {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.15;
+    color: var(--stone-700);
+    margin-top: 18px;
+    margin-bottom: auto;
+  }
+  .shelf { position: absolute; left: 72px; width: 450px; top: 564px; }
+  .domain { position: absolute; left: 72px; top: 584px; }
+
+    /* The project-state screenshot from the post, on a dark card */
+  .shot {
+    position: absolute;
+    left: 590px; top: 92px;
+    width: 556px; height: 401px;
+    transform: rotate(1.5deg);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #282a2e url(assets/iphone-11-project-state.png) top left / 100% auto no-repeat;
+    box-shadow:
+      0 0 0 1px rgb(28 25 23 / 0.1),
+      0 2px 4px rgb(68 64 60 / 0.08),
+      0 30px 60px -20px rgb(68 64 60 / 0.5);
+  }
+  .tag {
+    position: absolute;
+    right: 10px; bottom: 10px;
+    font: 500 11px var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    border-radius: 3px;
+    background: var(--wine); color: #fffdf9;
+  }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="mark">JB<span>.</span></div>
+    <div class="eyebrow">iPhone 11 · iOS 15.0.2</div>
+    <h1>Jailbreaking an iPhone 11</h1>
+    <div class="sub">The first step to a custom kernel.</div>
+  </div>
+
+  <div class="shot"><span class="tag">Second kernel alive</span></div>
+
+  <div class="shelf"><div class="rule"></div></div>
+  <div class="domain">jakeberg.xyz/blog</div>
+</body>
+</html>
